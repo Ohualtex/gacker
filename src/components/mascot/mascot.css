@@ -1,0 +1,377 @@
+/*
+ * Maskot standı — sağ alt, tüm sayfalarda. Boyutlar :root değişkenleriyle ayarlanır;
+ * AssistantWidget paneli bu değişkenlerle standın üstüne yerleşir.
+ */
+:root {
+  --mascot-w: 168px; /* mobil */
+  --mascot-h: calc(var(--mascot-w) * 344 / 320);
+}
+@media (min-width: 640px) {
+  :root { --mascot-w: 232px; }
+}
+@media (min-width: 1024px) {
+  :root { --mascot-w: 292px; }
+}
+
+/* Asistan: maskot varken yerleşik başlatıcı yok, panel standın üstünde açılır */
+:root:has(.gk-mascot) {
+  --assistant-right: 0.75rem;
+  --assistant-launcher-size: 0px;
+  --assistant-bottom: calc(var(--mascot-h) + 1rem);
+}
+:root:has(.gk-mascot[data-min="true"]) {
+  --assistant-bottom: 4.5rem;
+}
+@media (min-width: 640px) {
+  :root:has(.gk-mascot) .gk-assistant-panel {
+    height: min(36rem, calc(100dvh - var(--mascot-h) - 6.5rem));
+  }
+}
+/* Mobilde panel alt sayfa olarak tüm genişliği kaplar: stand panel açıkken gizlenir */
+@media (max-width: 639px) {
+  body:has(.gk-assistant-panel) .gk-mascot {
+    display: none;
+  }
+}
+
+.gk-mascot {
+  position: fixed;
+  z-index: 35; /* navbar (50) ve asistan paneli (40) altında */
+  right: max(0.5rem, env(safe-area-inset-right));
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  width: var(--mascot-w);
+  aspect-ratio: 320 / 344;
+  container-type: inline-size;
+  pointer-events: none; /* yalnızca stand düğmesi, karakter ve küçültme düğmesi tıklanır */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gk-mascot__body {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+  filter: drop-shadow(0 10px 14px rgba(74, 38, 20, 0.14));
+}
+:root[data-theme="dark"] .gk-mascot__body {
+  filter: brightness(0.86) saturate(0.95) drop-shadow(0 10px 14px rgba(0, 0, 0, 0.45));
+}
+.gk-mascot[data-min="true"] .gk-mascot__body {
+  transform: translateY(108%);
+  visibility: hidden;
+  transition: transform 0.5s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)), visibility 0s 0.5s;
+}
+
+.gk-mascot__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.gk-mascot__svg--front { z-index: 4; }
+
+/* ───────── Karakter kutusu ───────── */
+.gk-mascot__slot {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+.gk-mascot__slot[data-touchable="true"] {
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.gk-mascot__char,
+.gk-mascot__bob {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+}
+.gk-mascot__sprite {
+  position: absolute;
+  inset: auto 0 -12% 0;
+  width: 100%;
+  height: 112%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  -webkit-user-drag: none;
+}
+.gk-mascot__glb {
+  position: absolute !important;
+  inset: auto 0 -10% 0 !important;
+  width: 100% !important;
+  height: 112% !important;
+}
+.gk-mascot__placeholder {
+  position: absolute;
+  inset: auto 0 -6% 0;
+  width: 100%;
+  height: 106%;
+  color: #dcc5a3;
+  opacity: 0.5;
+}
+
+.gk-mascot__handful-wrap {
+  position: absolute;
+  width: 18.5%;
+  opacity: 0;
+  transform: translateY(6px) scale(0.9);
+  transform-origin: 50% 100%;
+  transition: opacity 0.4s ease, transform 0.5s var(--ease-out-expo, ease-out);
+}
+.gk-mascot__handful { display: block; width: 100%; height: auto; overflow: visible; }
+
+.gk-mascot[data-phase="offer"] .gk-mascot__handful-wrap,
+.gk-mascot[data-phase="returning"] .gk-mascot__handful-wrap {
+  opacity: 1;
+  transform: none;
+}
+.gk-mascot[data-phase="spill"] .gk-mascot__handful-wrap {
+  transition-duration: 0.12s;
+  transition-delay: 0.05s;
+}
+
+/* ───────── Faz hareketleri ───────── */
+.gk-mascot[data-phase="idle"] .gk-mascot__bob { animation: gk-breath 3.8s ease-in-out infinite; }
+.gk-mascot[data-phase="offer"] .gk-mascot__char {
+  transform: translateY(-1.5%) scale(1.05);
+  transition: transform 0.7s var(--ease-out-expo, ease-out);
+}
+.gk-mascot[data-phase="offer"] .gk-mascot__bob { animation: gk-breath 3s ease-in-out infinite; }
+.gk-mascot[data-phase="spill"] .gk-mascot__char { animation: gk-startle 0.75s ease-out both; }
+
+.gk-mascot[data-phase="runAway"] .gk-mascot__char {
+  animation: gk-run-away 1.9s cubic-bezier(0.55, 0.05, 0.85, 0.5) both;
+}
+.gk-mascot[data-phase="runAway"] .gk-mascot__bob,
+.gk-mascot[data-phase="returning"] .gk-mascot__bob {
+  animation: gk-run-bob 0.32s ease-in-out infinite;
+}
+.gk-mascot[data-phase="away"] .gk-mascot__char {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(44%, -36%) scale(0.18);
+}
+.gk-mascot[data-phase="returning"] .gk-mascot__char {
+  animation: gk-return 2.3s cubic-bezier(0.18, 0.7, 0.25, 1) both;
+}
+
+@keyframes gk-breath {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.012, 1.02); }
+}
+@keyframes gk-startle {
+  0% { transform: translateY(-1.5%) scale(1.05); }
+  22% { transform: translateY(-9%) scale(1.02, 1.07) rotate(-1.5deg); }
+  42% { transform: translateY(0) scale(1.06, 0.95); }
+  60% { transform: translateY(-2%) rotate(1.2deg) scale(1.03); }
+  80% { transform: translateY(0) rotate(-0.8deg); }
+  100% { transform: none; }
+}
+@keyframes gk-run-away {
+  0% { transform: none; opacity: 1; filter: none; }
+  25% { transform: translate(4%, -2%) scale(0.92); opacity: 1; }
+  100% { transform: translate(44%, -36%) scale(0.18); opacity: 0; filter: blur(1.5px); }
+}
+@keyframes gk-return {
+  0% { transform: translate(44%, -36%) scale(0.18); opacity: 0; filter: blur(1.5px); }
+  20% { opacity: 0.85; }
+  100% { transform: none; opacity: 1; filter: none; }
+}
+@keyframes gk-run-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-4%) rotate(2deg); }
+}
+
+/* ───────── Tezgâh düğmesi (asistanı açar) ───────── */
+.gk-mascot__stand {
+  position: absolute;
+  z-index: 3;
+  left: 8.4%;
+  top: 71.4%;
+  width: 83.2%;
+  height: 21.2%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 3px 3px 5px 5px;
+  background: linear-gradient(180deg, #a63127 0%, #8c261e 100%);
+  box-shadow: inset 0 0 0 1.5px #c8952b, inset 0 0 0 4px #8c261e, inset 0 0 0 4.6px rgba(244, 234, 219, 0.5);
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  transition: transform 0.35s var(--ease-out-expo, ease-out), filter 0.2s ease;
+  color: inherit;
+  font: inherit;
+}
+.gk-mascot__stand:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.gk-mascot__stand:active { transform: translateY(0); }
+.gk-mascot__stand:focus-visible {
+  outline: 3px solid var(--saffron);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.gk-mascot__kilim {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 6%;
+  height: 11%;
+  opacity: 0.9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8'%3E%3Cpolygon points='8,0.6 14,4 8,7.4 2,4' fill='%23C8952B'/%3E%3Cpolygon points='8,2.4 10.6,4 8,5.6 5.4,4' fill='%23F4EADB'/%3E%3C/svg%3E");
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+.gk-mascot__label {
+  position: relative;
+  box-sizing: border-box;
+  width: 52%;
+  margin-top: 6%;
+  padding: 0.22em 0.4em 0.26em;
+  border-radius: 3px;
+  background: var(--bone);
+  color: var(--kilim-deep);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(9px, 4.3cqw, 13.5px);
+  line-height: 1.12;
+  text-align: center;
+  text-wrap: balance;
+  box-shadow: 0 0 0 1px var(--saffron);
+}
+:root[data-theme="dark"] .gk-mascot__label { color: var(--ink); background: var(--cream); }
+
+/* ───────── Konuşma balonu (dekoratif) ───────── */
+.gk-mascot__bubble {
+  position: absolute;
+  z-index: 6;
+  right: 10%;
+  bottom: calc(100% - 3.5%);
+  max-width: min(15.5rem, calc(100vw - 1.5rem));
+  width: max-content;
+  padding: 0.55rem 0.8rem 0.6rem;
+  border: 1.5px solid var(--kilim);
+  border-radius: 6px;
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 0.9rem;
+  line-height: 1.25;
+  box-shadow: var(--shadow-warm);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.28s ease, transform 0.4s var(--ease-out-expo, ease-out);
+  pointer-events: none;
+}
+.gk-mascot__bubble[data-show="true"] { opacity: 1; transform: none; }
+.gk-mascot__bubble::after {
+  content: "";
+  position: absolute;
+  right: 22%;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  background: var(--bone);
+  border-right: 1.5px solid var(--kilim);
+  border-bottom: 1.5px solid var(--kilim);
+  transform: rotate(45deg);
+}
+@media (max-width: 639px) {
+  .gk-mascot__bubble { font-size: 0.78rem; max-width: min(11.5rem, calc(100vw - 1rem)); padding: 0.4rem 0.6rem 0.45rem; }
+}
+.gk-mascot[data-min="true"] .gk-mascot__bubble { display: none; }
+
+/* ───────── Şekerler ───────── */
+.gk-candies {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: visible;
+}
+.gk-candy {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(100cqw * 15 / 320);
+  height: calc(100cqw * 9.6 / 320);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.6) 0 18%, transparent 46%),
+    var(--c, #edb9c0);
+  box-shadow: inset -1px -1px 0 rgba(60, 30, 12, 0.14), 0 1px 1.5px rgba(60, 30, 12, 0.3);
+  will-change: transform;
+}
+
+/* ───────── Küçültme düğmesi ───────── */
+.gk-mascot__min {
+  position: absolute;
+  z-index: 7;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--bone) 88%, transparent);
+  color: var(--ink-2);
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.gk-mascot__min--top { top: 2%; left: -2px; }
+.gk-mascot__min:hover { opacity: 1; color: var(--kilim); }
+.gk-mascot__dock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.gk-mascot__dock .gk-mascot__min { position: static; }
+.gk-mascot__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--kilim);
+  color: var(--on-kilim);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: var(--shadow-warm);
+  transition: background-color 0.2s ease;
+}
+.gk-mascot__pill:hover { background: var(--kilim-deep); }
+@media (pointer: coarse) {
+  .gk-mascot__min { width: 36px; height: 36px; }
+}
+
+/* ───────── Duraklat / azaltılmış hareket / yazdırma ───────── */
+.gk-mascot[data-paused="true"] *,
+.gk-mascot[data-paused="true"] *::before {
+  animation-play-state: paused !important;
+}
+.gk-mascot__hang { transform-box: fill-box; transform-origin: 50% 0; animation: gk-sway 5s ease-in-out infinite; }
+@keyframes gk-sway {
+  0%, 100% { transform: rotate(-2.2deg); }
+  50% { transform: rotate(2.2deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gk-mascot *, .gk-mascot *::before { animation: none !important; }
+  .gk-mascot__body, .gk-mascot__bubble { transition: none; }
+}
+@media print {
+  .gk-mascot { display: none; }
+}

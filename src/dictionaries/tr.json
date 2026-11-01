@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Elazığ Badem Şekeri | Bademden şekere, Elazığ'dan sofranıza",
+    "description": "Elazığ badem şekerinin hikâyesi, onu yapan üreticiler ve Elazığ'ı keşfetmenin yolu. GakCoding için Gacker takımı tarafından geliştirildi."
+  },
+  "brand": {
+    "name": "Elazığ Badem Şekeri",
+    "short": "Badem Şekeri"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "story": "Hikâye",
+    "producers": "Üreticiler",
+    "discover": "Elazığ'ı Keşfet",
+    "contact": "İletişim",
+    "menu": "Menü",
+    "close": "Kapat",
+    "skip": "İçeriğe geç",
+    "gallery": "Galeri"
+  },
+  "controls": {
+    "language": "Dil",
+    "theme": "Tema",
+    "themeLight": "Aydınlık",
+    "themeDark": "Koyu",
+    "themeSystem": "Sistem",
+    "musicOn": "Müziği aç",
+    "musicOff": "Müziği kapat"
+  },
+  "hero": {
+    "title": "Bademden şekere, Elazığ'dan sofranıza.",
+    "lead": "Elazığ'ın badem şekerini, onu yapan ellerle birlikte tanıyın.",
+    "ctaStory": "Hikâyeyi keşfet",
+    "ctaProducers": "Üreticilerle tanış",
+    "videoLabel": "Elazığ'da badem toplayıp badem şekeri yapan kadınları gösteren tanıtım filmi",
+    "mascotHint": "Maskota dokun"
+  },
+  "storyTeaser": {
+    "title": "Bir şekerin yolculuğu",
+    "body": "Badem ağaçtan toplanır, şerbetle buluşur ve tepsiye dizilir. Bu yolculuğun her adımında bir el, bir emek ve bir hikâye var.",
+    "cta": "Hikâyenin tamamı"
+  },
+  "producersTeaser": {
+    "title": "Şekeri yapan eller",
+    "body": "Elazığ'da badem şekeri üreten ve satan işletmeleri, hikâyeleri ve adresleriyle bir arada bulun.",
+    "cta": "Tüm üreticiler",
+    "demoBadge": "Örnek içerik"
+  },
+  "discoverTeaser": {
+    "title": "Elazığ'ı keşfedin",
+    "body": "Harput'tan Hazar Gölü'ne, yöresel lezzetlerden gezilecek yerlere: şeker yoluyla gelen ziyaretçiye kısa bir rehber.",
+    "cta": "Haritayı aç"
+  },
+  "assistant": {
+    "title": "Badem Şekeri Asistanı",
+    "placeholder": "Badem şekeri hakkında bir şey sor…",
+    "send": "Gönder",
+    "open": "Asistanı aç",
+    "close": "Asistanı kapat",
+    "greeting": "Merhaba! Badem şekeri ve Elazığ hakkında sorularını yanıtlayabilirim.",
+    "error": "Şu an yanıt veremiyorum. Biraz sonra tekrar dener misin?"
+  },
+  "footer": {
+    "builtBy": "GakCoding için Gacker takımı tarafından geliştirildi.",
+    "event": "GakCoding · 1 Kasım 2026 · Elazığ",
+    "rights": "Üretici kayıtları takım rehberinden derlenmiştir; gitmeden önce teyit edin. Temsili görseller işletmenin kendi fotoğrafı değildir.",
+    "musicCredit": "Müzik",
+    "explore": "Keşfet",
+    "contact": "İletişim"
+  },
+  "pages": {
+    "story": {
+      "title": "Hikâye",
+      "lead": "Badem şekerinin kökü, şehri ve sofrası."
+    },
+    "producers": {
+      "title": "Üreticiler",
+      "lead": "Kapalı Çarşı'dan kooperatife, Elazığ'da badem şekeri yapan eller."
+    },
+    "discover": {
+      "title": "Elazığ'ı Keşfet",
+      "lead": "Harput'tan Hazar'a bir rota."
+    },
+    "contact": {
+      "title": "İletişim",
+      "lead": "Bize ulaşın."
+    },
+    "gallery": {
+      "title": "Galeri",
+      "lead": "Badem çiçeğinden tepsiye, görüntülerle bir yolculuk."
+    }
+  }
+}

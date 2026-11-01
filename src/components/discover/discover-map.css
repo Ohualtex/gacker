@@ -1,0 +1,177 @@
+.dm-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 616;
+}
+
+.dm-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.dm-district {
+  fill: color-mix(in oklab, var(--almond) 20%, var(--cream));
+  stroke: var(--bone);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  transition: fill 0.3s var(--ease-out-expo);
+  cursor: default;
+}
+.dm-district:hover,
+.dm-district-active {
+  fill: color-mix(in oklab, var(--saffron) 42%, var(--cream));
+}
+
+.dm-district-name {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  fill: var(--ink-2);
+  opacity: 0.8;
+  text-anchor: middle;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: color-mix(in oklab, var(--almond) 20%, var(--cream));
+  stroke-width: 3px;
+}
+
+.dm-leader {
+  stroke: var(--kilim-deep);
+  stroke-width: 1.25px;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.7;
+}
+.dm-true-point {
+  fill: var(--kilim-deep);
+}
+
+/* Düğme: gerçek <button>, SVG'nin üstünde yüzde konumlu */
+.dm-marker {
+  position: absolute;
+  width: 32px;
+  height: 36px;
+  margin: -18px 0 0 -16px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 6px;
+  -webkit-tap-highlight-color: transparent;
+}
+.dm-marker-on {
+  z-index: 3;
+}
+.dm-almond {
+  width: 18px;
+  height: 24px;
+  overflow: visible;
+  transform-origin: 50% 85%;
+  transition: transform 0.25s var(--ease-out-expo);
+  filter: drop-shadow(0 2px 2px rgba(60, 30, 14, 0.35));
+}
+.dm-almond-body {
+  fill: var(--kilim);
+  stroke: var(--bone);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  transition: fill 0.25s ease;
+}
+.dm-almond-vein {
+  stroke: var(--saffron);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  fill: none;
+}
+.dm-marker:hover .dm-almond {
+  transform: scale(1.14);
+}
+.dm-marker-on .dm-almond {
+  transform: scale(1.32);
+}
+.dm-marker-on .dm-almond-body {
+  fill: var(--kilim-deep);
+  stroke: var(--saffron);
+  stroke-width: 2;
+}
+
+.dm-tag {
+  position: absolute;
+  z-index: 4;
+  transform: translate(-50%, calc(-100% - 22px));
+  padding: 3px 9px;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--bone);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--shadow-warm);
+  animation: tagIn 0.3s var(--ease-out-expo) both;
+}
+.dm-tag-edge-l {
+  transform: translate(-12%, calc(-100% - 22px));
+}
+.dm-tag-edge-r {
+  transform: translate(-88%, calc(-100% - 22px));
+}
+.dm-tag-r {
+  transform: translate(24px, -50%);
+}
+.dm-tag-l {
+  transform: translate(calc(-100% - 24px), -50%);
+}
+
+.dm-panel-body {
+  animation: panelIn 0.45s var(--ease-out-expo) both;
+}
+
+.dm-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.dm-chip:hover {
+  border-color: var(--almond);
+  color: var(--ink);
+}
+.dm-chip-on {
+  background: var(--kilim);
+  border-color: var(--kilim);
+  color: var(--on-kilim);
+}
+.dm-chip-on:hover {
+  color: var(--on-kilim);
+  border-color: var(--kilim);
+}
+
+@keyframes tagIn {
+  from { opacity: 0; filter: blur(3px); }
+  to { opacity: 1; filter: blur(0); }
+}
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(8px); filter: blur(3px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+@media (max-width: 640px) {
+  .dm-marker { width: 28px; height: 32px; margin: -16px 0 0 -14px; }
+  .dm-almond { width: 14px; height: 19px; }
+  .dm-district-name-wrap { display: none; }
+}

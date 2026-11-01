@@ -1,0 +1,97 @@
+/*
+ * Konumlandırma CSS değişkenleriyle ayarlanır; maskot bu değerleri üst öğede (veya
+ * :root'ta) vererek başlatıcıyı ve paneli kendi konumuna taşıyabilir:
+ *   --assistant-right           (varsayılan 1.25rem)
+ *   --assistant-bottom          (varsayılan 1.25rem; footer kilim bandı için güvenli pay)
+ *   --assistant-launcher-size   (varsayılan 3rem; panel başlatıcının üstünde açılır)
+ *   --assistant-z               (varsayılan 40; navbar z-50'nin altında)
+ */
+.gk-assistant-launcher {
+  position: fixed;
+  z-index: var(--assistant-z, 80);
+  right: var(--assistant-right, 1.25rem);
+  bottom: var(--assistant-bottom, 1.25rem);
+  height: var(--assistant-launcher-size, 3rem);
+}
+
+.gk-assistant-panel {
+  position: fixed;
+  z-index: var(--assistant-z, 80);
+  right: var(--assistant-right, 1.25rem);
+  bottom: calc(var(--assistant-bottom, 1.25rem) + var(--assistant-launcher-size, 3rem) + 0.75rem);
+  width: min(25rem, calc(100vw - 2.5rem));
+  height: min(36rem, calc(100dvh - 9rem));
+  transform-origin: bottom right;
+  animation: gk-assistant-panel-in 0.5s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+/* Mobil: tam genişlikte alt sayfa */
+@media (max-width: 639px) {
+  .gk-assistant-panel {
+    inset: auto 0 0 0;
+    width: auto;
+    height: min(82dvh, 36rem);
+    transform-origin: bottom center;
+    animation-name: gk-assistant-sheet-in;
+    border-radius: 6px 6px 0 0;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .gk-assistant-launcher-hidden {
+    display: none;
+  }
+}
+
+@keyframes gk-assistant-panel-in {
+  from {
+    transform: translateY(0.75rem) scale(0.98);
+    clip-path: inset(8% 0 0 0 round 6px);
+  }
+  to {
+    transform: none;
+    clip-path: inset(0 0 0 0 round 6px);
+  }
+}
+
+@keyframes gk-assistant-sheet-in {
+  from {
+    transform: translateY(2rem);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Sakin, opaklık oynatmayan ilerleme çubuğu (nokta animasyonu yok) */
+.gk-assistant-bar {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+  background: var(--line);
+}
+.gk-assistant-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 35%;
+  background: var(--saffron);
+  animation: gk-assistant-bar-slide 2.6s linear infinite;
+}
+
+@keyframes gk-assistant-bar-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(290%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gk-assistant-panel {
+    animation: none;
+  }
+  .gk-assistant-bar::after {
+    animation: none;
+    width: 100%;
+  }
+}

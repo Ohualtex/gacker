@@ -1,0 +1,531 @@
+/* Gezi rehberi — yalnızca global, gk-guide-* önekli sınıflar */
+.gk-guide-day-1 { --gk-day: var(--kilim); }
+.gk-guide-day-2 { --gk-day: var(--olive); }
+
+/* ───────── Sekmeler ───────── */
+.gk-guide-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+  border-bottom: 1px solid var(--line);
+}
+.gk-guide-tab {
+  position: relative;
+  min-height: 3rem;
+  padding: 0.25rem 0;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  color: var(--ink-2);
+  transition: color 0.25s var(--ease-out-expo);
+}
+.gk-guide-tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--kilim);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.gk-guide-tab:hover { color: var(--ink); }
+.gk-guide-tab-on { color: var(--ink); }
+.gk-guide-tab-on::after { transform: scaleX(1); }
+
+/* ───────── Yerleşim ───────── */
+.gk-guide-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .gk-guide-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 4rem;
+    margin-top: 2.5rem;
+  }
+  .gk-guide-main { order: 1; }
+  .gk-guide-aside { order: 2; }
+}
+
+/* ───────── Mini harita (yapışkan) ───────── */
+.gk-guide-aside {
+  position: sticky;
+  top: 4.5rem;
+  z-index: 5;
+  align-self: start;
+  margin-inline: -1.25rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--bone);
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 640px) {
+  .gk-guide-aside {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+@media (min-width: 1024px) {
+  .gk-guide-aside {
+    top: 6.5rem;
+    padding: 0;
+    border-bottom: 0;
+    background: transparent;
+  }
+}
+.gk-guide-figure { margin: 0; }
+.gk-guide-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 616;
+  max-height: 34dvh;
+  margin-inline: auto;
+}
+@media (min-width: 1024px) {
+  .gk-guide-stage { max-height: none; }
+}
+.gk-guide-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.gk-guide-district {
+  fill: color-mix(in oklab, var(--almond) 20%, var(--cream));
+  stroke: var(--bone);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.gk-guide-dot {
+  fill: var(--almond);
+  opacity: 0.5;
+}
+.gk-guide-line-plan {
+  stroke: var(--almond);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-dasharray: 1 7;
+  opacity: 0.8;
+}
+.gk-guide-line-done {
+  stroke: var(--gk-day);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  transition: stroke-dashoffset 0.9s var(--ease-out-expo);
+}
+.gk-guide-leader {
+  stroke: var(--kilim-deep);
+  stroke-width: 1.5;
+  opacity: 0.6;
+}
+.gk-guide-true { fill: var(--kilim-deep); }
+
+.gk-guide-marker {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--gk-day, var(--almond));
+  background: var(--bone);
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  transform: rotate(45deg);
+  transition: transform 0.4s var(--ease-out-expo), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.gk-guide-marker::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+}
+.gk-guide-marker > span {
+  display: block;
+  transform: rotate(-45deg);
+  font-variant-numeric: tabular-nums;
+}
+.gk-guide-marker-passed {
+  background: var(--gk-day);
+  color: var(--on-kilim);
+}
+.gk-guide-marker-active {
+  z-index: 3;
+  background: var(--gk-day);
+  color: var(--on-kilim);
+  transform: rotate(45deg) scale(1.22);
+  box-shadow: 0 0 0 2px var(--bone), 0 0 0 3.5px var(--saffron);
+}
+.gk-guide-marker-side {
+  --gk-day: var(--almond);
+  border-style: dashed;
+}
+.gk-guide-marker-side.gk-guide-marker-active {
+  background: var(--almond);
+}
+.gk-guide-marker:hover { z-index: 2; }
+
+.gk-guide-tag {
+  position: absolute;
+  z-index: 4;
+  transform: translate(-50%, -190%);
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bone);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: var(--shadow-warm);
+  pointer-events: none;
+  animation: gk-guide-tag-in 0.45s var(--ease-out-expo) both;
+}
+.gk-guide-tag-l { transform: translate(-12%, -190%); }
+.gk-guide-tag-r { transform: translate(-88%, -190%); }
+@keyframes gk-guide-tag-in {
+  from { opacity: 0; translate: 0 4px; }
+  to { opacity: 1; translate: 0 0; }
+}
+.gk-guide-caption {
+  display: none;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+@media (min-width: 1024px) {
+  .gk-guide-caption { display: block; }
+}
+
+/* ───────── Zaman çizelgesi ───────── */
+.gk-guide-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gk-guide-dayrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 1.25rem;
+}
+.gk-guide-dayrow:first-child { margin-top: 0.5rem; }
+.gk-guide-dayhead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.875rem;
+  font-size: 1.5rem;
+}
+.gk-guide-daytag {
+  padding: 0.1rem 0.6rem;
+  border-radius: 2px;
+  background: var(--gk-day);
+  color: var(--on-kilim);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+.gk-guide-daytitle { font-family: var(--font-display); }
+.gk-guide-dayline {
+  flex: 1;
+  height: 2px;
+  min-width: 1.5rem;
+  background: repeating-linear-gradient(to right, var(--gk-day, var(--kilim)) 0 5px, transparent 5px 9px);
+  opacity: 0.55;
+}
+
+.gk-guide-row {
+  position: relative;
+  padding: 0 0 2.75rem 3.25rem;
+}
+.gk-guide-row-last { padding-bottom: 0.5rem; }
+
+.gk-guide-node {
+  position: absolute;
+  left: 3px;
+  top: 0.4rem;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--gk-day);
+  background: var(--bone);
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  transform: rotate(45deg);
+  transition: transform 0.45s var(--ease-out-expo), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.gk-guide-node-num {
+  display: block;
+  transform: rotate(-45deg);
+  font-variant-numeric: tabular-nums;
+}
+.gk-guide-row-passed .gk-guide-node {
+  background: var(--gk-day);
+  color: var(--on-kilim);
+}
+.gk-guide-row-active .gk-guide-node {
+  background: var(--gk-day);
+  color: var(--on-kilim);
+  transform: rotate(45deg) scale(1.2);
+  box-shadow: 0 0 0 2px var(--bone), 0 0 0 3.5px var(--saffron);
+}
+
+/* Dikiş çizgisi: kaydırdıkça dolar */
+.gk-guide-seg {
+  position: absolute;
+  left: 13px;
+  top: calc(0.4rem + 28px);
+  bottom: -0.1rem;
+  width: 2px;
+}
+.gk-guide-seg-base,
+.gk-guide-seg-fill {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, currentColor 0 5px, transparent 5px 9px);
+}
+.gk-guide-seg-base {
+  color: var(--almond);
+  opacity: 0.35;
+}
+.gk-guide-seg-fill { color: var(--gk-day); }
+
+.gk-guide-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.875rem;
+  min-height: 1.5rem;
+  font-size: 0.8125rem;
+}
+.gk-guide-part {
+  font-weight: 700;
+  color: var(--almond);
+}
+.gk-guide-dist {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.gk-guide-name {
+  margin-top: 0.125rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  transition: color 0.3s ease;
+}
+.gk-guide-row-active .gk-guide-name { color: var(--kilim); }
+.gk-guide-note {
+  margin-top: 0.625rem;
+  max-width: 58ch;
+  color: var(--ink-2);
+  font-size: 0.975rem;
+}
+.gk-guide-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem 1.25rem;
+  margin-top: 1rem;
+}
+.gk-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0 0.875rem;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.25s var(--ease-out-expo), color 0.25s var(--ease-out-expo), border-color 0.25s ease, transform 0.2s ease;
+}
+.gk-guide-btn:hover {
+  background: var(--ink);
+  color: var(--bone);
+}
+.gk-guide-btn:active { transform: scale(0.98); }
+.gk-guide-btn-solid {
+  border-color: var(--kilim);
+  background: var(--kilim);
+  color: var(--on-kilim);
+}
+.gk-guide-btn-solid:hover {
+  border-color: var(--kilim-deep);
+  background: var(--kilim-deep);
+  color: var(--on-kilim);
+}
+.gk-guide-btn-on {
+  border-color: var(--olive);
+  background: color-mix(in oklab, var(--olive) 14%, transparent);
+  color: var(--ink);
+}
+.gk-guide-btn-on:hover {
+  background: var(--olive);
+  color: var(--bone);
+}
+.gk-guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2rem;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+.gk-guide-link:hover { color: var(--ink); }
+
+.gk-guide-side {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.25rem 1.375rem;
+  border: 1px dashed var(--almond);
+  border-radius: 3px;
+  background: var(--cream);
+  transition: border-color 0.3s ease;
+}
+.gk-guide-side-active { border-color: var(--kilim); border-style: solid; }
+.gk-guide-side .gk-guide-name { font-size: 1.5rem; }
+
+.gk-guide-disclaimer {
+  margin-top: 2rem;
+  padding-left: 0.875rem;
+  border-left: 2px solid var(--saffron);
+  max-width: 60ch;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+/* ───────── Gezi listem ───────── */
+.gk-guide-trip {
+  margin-top: 4rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--cream);
+}
+@media (min-width: 640px) {
+  .gk-guide-trip { padding: 2rem; }
+}
+.gk-guide-trip-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.gk-guide-trip-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  font-size: 1.75rem;
+}
+.gk-guide-trip-count {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--almond);
+  font-variant-numeric: tabular-nums;
+}
+.gk-guide-trip-lead,
+.gk-guide-trip-empty {
+  margin-top: 0.5rem;
+  max-width: 56ch;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+.gk-guide-trip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+.gk-guide-trip-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.gk-guide-trip-item {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.gk-guide-trip-num {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  color: var(--kilim);
+  font-variant-numeric: tabular-nums;
+}
+.gk-guide-trip-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+.gk-guide-trip-url {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+  word-break: break-all;
+}
+.gk-guide-trip-remove {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 3px;
+  color: var(--ink-2);
+  transition: color 0.2s ease;
+}
+.gk-guide-trip-remove:hover { color: var(--kilim); }
+.gk-guide-print-only { display: none; }
+
+@media print {
+  body * { visibility: hidden !important; }
+  .gk-guide-trip,
+  .gk-guide-trip * { visibility: visible !important; }
+  .gk-guide-trip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0;
+    border: 0;
+    background: #fff;
+  }
+  .gk-guide-trip,
+  .gk-guide-trip * { color: #000 !important; }
+  .gk-guide-trip-title { font-size: 1.75rem; }
+  .gk-guide-trip-num { color: #000 !important; }
+  .gk-guide-noprint { display: none !important; }
+  .gk-guide-print-only { display: inline; }
+  .gk-guide-trip-url { display: block; }
+}
+
+/* Hareketi azaltma: giriş animasyonlarını devre dışı bırak, her şey statik görünsün.
+   (Satır içi stilleri ezmek için !important gerekli; SSR/istemci uyumsuzluğunu önler.) */
+@media (prefers-reduced-motion: reduce) {
+  .gk-guide-row,
+  .gk-guide-dayrow,
+  .gk-guide-side {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .gk-guide-seg-fill { clip-path: none !important; }
+  .gk-guide-tag { animation: none; }
+}

@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Elazığ Almond Candy | From almond to sweet, from Elazığ to your table",
+    "description": "The story of Elazığ almond candy, the producers who make it, and a guide to exploring Elazığ. Built by team Gacker for GakCoding."
+  },
+  "brand": {
+    "name": "Elazığ Almond Candy",
+    "short": "Almond Candy"
+  },
+  "nav": {
+    "home": "Home",
+    "story": "Story",
+    "producers": "Producers",
+    "discover": "Discover Elazığ",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close",
+    "skip": "Skip to content",
+    "gallery": "Gallery"
+  },
+  "controls": {
+    "language": "Language",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "musicOn": "Turn music on",
+    "musicOff": "Turn music off"
+  },
+  "hero": {
+    "title": "From almond to sweet, from Elazığ to your table.",
+    "lead": "Meet Elazığ's almond candy, together with the hands that make it.",
+    "ctaStory": "Discover the story",
+    "ctaProducers": "Meet the producers",
+    "videoLabel": "A film showing women in Elazığ picking almonds and making almond candy",
+    "mascotHint": "Tap the mascot"
+  },
+  "storyTeaser": {
+    "title": "A candy's journey",
+    "body": "Almonds are picked from the tree, meet the syrup and are laid out on the tray. Every step of that journey carries a pair of hands, a lot of effort and a story.",
+    "cta": "Read the full story"
+  },
+  "producersTeaser": {
+    "title": "The hands behind the candy",
+    "body": "Find the businesses that make and sell almond candy in Elazığ, with their stories and addresses in one place.",
+    "cta": "All producers",
+    "demoBadge": "Sample content"
+  },
+  "discoverTeaser": {
+    "title": "Discover Elazığ",
+    "body": "From Harput to Lake Hazar, from local flavours to places to visit: a short guide for visitors who arrive through the candy.",
+    "cta": "Open the map"
+  },
+  "assistant": {
+    "title": "Almond Candy Assistant",
+    "placeholder": "Ask something about almond candy…",
+    "send": "Send",
+    "open": "Open assistant",
+    "close": "Close assistant",
+    "greeting": "Hello! I can answer your questions about almond candy and Elazığ.",
+    "error": "I can't answer right now. Could you try again in a moment?"
+  },
+  "footer": {
+    "builtBy": "Built by team Gacker for GakCoding.",
+    "event": "GakCoding · 1 November 2026 · Elazığ",
+    "rights": "Producer records are compiled from the team guide; confirm before you visit. Editorial stills are not photographs of the businesses.",
+    "musicCredit": "Music",
+    "explore": "Explore",
+    "contact": "Contact"
+  },
+  "pages": {
+    "story": {
+      "title": "Story",
+      "lead": "The roots, the city and the table of almond candy."
+    },
+    "producers": {
+      "title": "Producers",
+      "lead": "From the covered bazaar to the cooperative, the hands that make the candy."
+    },
+    "discover": {
+      "title": "Discover Elazığ",
+      "lead": "A route from Harput to Hazar."
+    },
+    "contact": {
+      "title": "Contact",
+      "lead": "Get in touch."
+    },
+    "gallery": {
+      "title": "Gallery",
+      "lead": "From almond blossom to tray, a journey in pictures."
+    }
+  }
+}

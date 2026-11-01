@@ -1,0 +1,268 @@
+/* ───────── Halay şeridi (gk-folk-*) ─────────
+   Yalnız global CSS. Hareket: transform; tempo ≈105 BPM (bir vuruş = 0,5714 sn).
+   Dalga: her figür bir önceki figürden 1/8 vuruş kaydırılmış (negatif gecikme). */
+
+.gk-folk-root {
+  --gk-beat: 0.5714s;
+
+  /* aydınlık tema */
+  --gk-ln: #3b2517;
+  --gk-skin-a: #e3b690;
+  --gk-skin-b: #c98f67;
+  --gk-white: #fffaf0;
+  --gk-kusak: #fdf3de;
+  --gk-silver: #cfcac1;
+  --gk-fes: #7c2621;
+  --gk-shoe: #4a2f20;
+  --gk-wool-grey: #6f675f;
+  --gk-wool-slate: #404652;
+  --gk-coat-a: #9b2b22;
+  --gk-coat-b: #566129;
+  --gk-coat-c: #7a4a2a;
+  --gk-salvar-a: #cfa45a;
+  --gk-salvar-b: #b98a63;
+  --gk-shade: rgba(74, 38, 20, 0.2);
+
+  position: relative;
+  background: color-mix(in oklab, var(--almond) 9%, var(--cream));
+  border-top: 1px solid var(--line);
+  padding-top: clamp(1.75rem, 4vw, 3rem);
+  padding-bottom: 2.25rem;
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] .gk-folk-root {
+  --gk-ln: #120a06;
+  --gk-skin-a: #dcae88;
+  --gk-skin-b: #bd8760;
+  --gk-white: #f1e6d3;
+  --gk-kusak: #eadcc2;
+  --gk-silver: #c9c3b8;
+  --gk-fes: #a63a2f;
+  --gk-shoe: #6b4a36;
+  --gk-wool-grey: #877d72;
+  --gk-wool-slate: #5a606c;
+  --gk-coat-a: #bb4a3d;
+  --gk-coat-b: #7d8a45;
+  --gk-coat-c: #a6764b;
+  --gk-salvar-a: #bd9145;
+  --gk-salvar-b: #a77c58;
+  --gk-shade: rgba(0, 0, 0, 0.38);
+}
+
+/* Sahne: kenardan kenara; uçlara doğru solar (zincir kadrajın dışına devam eder) */
+.gk-folk-stage {
+  position: relative;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+/* Zemin çizgisi + çok hafif zemin düzlemi (viewBox: zemin y=0, alt kenar y=20 → %93,15) */
+.gk-folk-stage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 93.15%;
+  bottom: 0;
+  border-top: 1px solid color-mix(in oklab, var(--almond) 55%, transparent);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--almond) 14%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Geniş ekranda 1160px'e kadar; dar ekranda 640px'te kalır ve ortadan kırpılır (~5 figür) */
+.gk-folk-svg {
+  position: relative;
+  display: block;
+  left: 50%;
+  width: clamp(640px, 100%, 1160px);
+  max-width: none;
+  height: auto;
+  transform: translateX(-50%);
+  overflow: visible;
+}
+
+/* Metin */
+.gk-folk-text {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.gk-folk-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  color: var(--ink);
+}
+.gk-folk-lead {
+  margin: 0.5rem auto 0;
+  max-width: 44ch;
+  color: var(--ink-2);
+}
+.gk-folk-note {
+  margin: 0.4rem auto 0;
+  max-width: 56ch;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  opacity: 0.85;
+}
+
+/* Statik poz (varsayılan ve reduced-motion): hafif dalgalı duruş, her figürde bir ayak hafif kalkık */
+.gk-folk-sway {
+  transform: translateX(var(--gk-rx, 0px));
+}
+.gk-folk-leg-a {
+  transform: translateY(var(--gk-lift-a, 0px));
+}
+.gk-folk-leg-b {
+  transform: translateY(var(--gk-lift-b, 0px));
+}
+
+/* Giriş: JS hazırken ve henüz görülmemişse gizli; görününce figürler sırayla belirir */
+.gk-folk-root[data-ready="true"]:not([data-seen="true"]) .gk-folk-in {
+  opacity: 0;
+}
+.gk-folk-in {
+  transition: opacity 0.7s var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+@keyframes gk-folk-sway {
+  0%,
+  100% {
+    transform: translate(-9px, 0) rotate(-1.6deg);
+  }
+  50% {
+    transform: translate(9px, 0) rotate(1.6deg);
+  }
+}
+@keyframes gk-folk-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  42% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes gk-folk-step {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(0, -6px) rotate(3deg);
+  }
+  50% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+@keyframes gk-folk-arms {
+  0%,
+  100% {
+    transform: translateY(-2.2px);
+  }
+  50% {
+    transform: translateY(2.2px);
+  }
+}
+@keyframes gk-folk-drape {
+  0%,
+  100% {
+    transform: skewX(2.4deg);
+  }
+  50% {
+    transform: skewX(-2.4deg);
+  }
+}
+@keyframes gk-folk-shade {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  42% {
+    transform: scaleX(0.84);
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .gk-folk-sway,
+  .gk-folk-bob,
+  .gk-folk-leg-a,
+  .gk-folk-leg-b,
+  .gk-folk-arms,
+  .gk-folk-skirt,
+  .gk-folk-shade {
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+  }
+  .gk-folk-in {
+    --gk-d: calc(var(--gk-beat) * var(--i, 0) / -8);
+  }
+  .gk-folk-sway {
+    animation-name: gk-folk-sway;
+    animation-duration: calc(var(--gk-beat) * 4);
+    animation-delay: var(--gk-d);
+  }
+  .gk-folk-bob {
+    animation-name: gk-folk-bob;
+    animation-duration: var(--gk-beat);
+    animation-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
+    animation-delay: calc(var(--gk-d) / 2);
+  }
+  .gk-folk-shade {
+    animation-name: gk-folk-shade;
+    animation-duration: var(--gk-beat);
+    animation-delay: calc(var(--gk-d) / 2);
+  }
+  .gk-folk-leg-a,
+  .gk-folk-leg-b {
+    animation-name: gk-folk-step;
+    animation-duration: calc(var(--gk-beat) * 2);
+  }
+  .gk-folk-leg-a {
+    animation-delay: var(--gk-d);
+  }
+  .gk-folk-leg-b {
+    animation-delay: calc(var(--gk-d) - var(--gk-beat));
+  }
+  .gk-folk-arms {
+    animation-name: gk-folk-arms;
+    animation-duration: calc(var(--gk-beat) * 2);
+    animation-delay: var(--gk-d);
+  }
+  .gk-folk-skirt {
+    animation-name: gk-folk-drape;
+    animation-duration: calc(var(--gk-beat) * 4);
+    animation-delay: calc(var(--gk-d) - var(--gk-beat) * 0.4);
+    transform-origin: 0 -140px;
+  }
+  .gk-folk-leg-a,
+  .gk-folk-leg-b {
+    transform-origin: 0 -132px;
+  }
+
+  /* Ekran dışı veya sekme gizli: durdur */
+  .gk-folk-root[data-paused="true"] .gk-folk-sway,
+  .gk-folk-root[data-paused="true"] .gk-folk-bob,
+  .gk-folk-root[data-paused="true"] .gk-folk-leg-a,
+  .gk-folk-root[data-paused="true"] .gk-folk-leg-b,
+  .gk-folk-root[data-paused="true"] .gk-folk-arms,
+  .gk-folk-root[data-paused="true"] .gk-folk-skirt,
+  .gk-folk-root[data-paused="true"] .gk-folk-shade {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gk-folk-in {
+    transition: none;
+  }
+}

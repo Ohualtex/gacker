@@ -1,0 +1,464 @@
+/* "Hangi Badem Şekerisin?" testi: yalnız gk-quiz-* sınıfları. */
+
+/* ───────── Üst başlık ───────── */
+.gk-quiz-head {
+  background: var(--cream);
+  padding-top: 8.5rem;
+}
+.gk-quiz-head-inner {
+  padding-bottom: 2.75rem;
+  animation: gk-quiz-rise 0.9s var(--ease-out-expo) both;
+}
+@keyframes gk-quiz-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.gk-quiz-title {
+  font-size: clamp(2.25rem, 5.4vw, 4.25rem);
+}
+.gk-quiz-lead {
+  margin-top: 1rem;
+  max-width: 38rem;
+  font-size: 1.125rem;
+  color: var(--ink-2);
+}
+
+/* ───────── Sahne ───────── */
+.gk-quiz-stage {
+  width: min(100% - 2.5rem, 52rem);
+  margin-inline: auto;
+  padding-block: 3rem 5rem;
+}
+
+.gk-quiz-card {
+  position: relative;
+  background: var(--cream);
+  border-radius: 4px;
+  box-shadow: var(--shadow-warm);
+  padding: 1.75rem 1.5rem 1.5rem;
+  min-height: 31rem;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .gk-quiz-card {
+    padding: 2.5rem 2.75rem 2.25rem;
+  }
+}
+
+.gk-quiz-note {
+  margin-top: 1.25rem;
+  max-width: 40rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ───────── İlerleme ───────── */
+.gk-quiz-progress {
+  margin-bottom: 1.75rem;
+}
+.gk-quiz-progress-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.gk-quiz-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--bone);
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
+}
+.gk-quiz-bar-ghost {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  filter: saturate(0.6);
+}
+.gk-quiz-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  overflow: hidden;
+}
+.gk-quiz-bar-fill > svg {
+  display: block;
+  width: min(52rem, 100vw);
+}
+
+/* ───────── Soru ───────── */
+.gk-quiz-question {
+  font-size: clamp(1.5rem, 3.4vw, 2.25rem);
+  line-height: 1.12;
+  outline: none;
+  max-width: 36rem;
+}
+
+.gk-quiz-options {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.gk-quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font: inherit;
+  font-size: 1.02rem;
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--bone);
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    border-color 0.25s var(--ease-out-expo),
+    background-color 0.25s var(--ease-out-expo),
+    transform 0.25s var(--ease-out-expo),
+    box-shadow 0.25s var(--ease-out-expo);
+}
+.gk-quiz-option:hover {
+  border-color: var(--kilim);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px -12px rgba(74, 38, 20, 0.45);
+}
+.gk-quiz-option:active {
+  transform: translateY(0);
+}
+.gk-quiz-option[aria-checked="true"] {
+  border-color: var(--kilim);
+  background: color-mix(in srgb, var(--kilim) 11%, var(--bone));
+}
+.gk-quiz-option:disabled {
+  cursor: default;
+}
+
+.gk-quiz-option-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  transition:
+    background-color 0.25s var(--ease-out-expo),
+    color 0.25s var(--ease-out-expo),
+    border-color 0.25s var(--ease-out-expo);
+}
+.gk-quiz-option:hover .gk-quiz-option-mark {
+  border-color: var(--kilim);
+  color: var(--kilim);
+}
+.gk-quiz-option[aria-checked="true"] .gk-quiz-option-mark {
+  background: var(--kilim);
+  border-color: var(--kilim);
+  color: var(--on-kilim);
+}
+.gk-quiz-option-text {
+  flex: 1;
+}
+
+.gk-quiz-foot {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  min-height: 2.5rem;
+}
+
+/* ───────── Düğmeler ───────── */
+.gk-quiz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.15rem;
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: 4px;
+  border: 1.5px solid var(--kilim);
+  color: var(--kilim);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.25s var(--ease-out-expo),
+    color 0.25s var(--ease-out-expo),
+    transform 0.25s var(--ease-out-expo);
+}
+.gk-quiz-btn:hover {
+  background: color-mix(in srgb, var(--kilim) 10%, transparent);
+}
+.gk-quiz-btn:active {
+  transform: translateY(1px);
+}
+.gk-quiz-btn[data-variant="primary"] {
+  background: var(--kilim);
+  color: var(--on-kilim);
+}
+.gk-quiz-btn[data-variant="primary"]:hover {
+  background: var(--kilim-deep);
+  border-color: var(--kilim-deep);
+}
+.gk-quiz-btn[data-variant="quiet"] {
+  border-color: transparent;
+  color: var(--ink-2);
+  padding-inline: 0.25rem;
+  min-height: 2.5rem;
+}
+.gk-quiz-btn[data-variant="quiet"]:hover {
+  color: var(--ink);
+  background: transparent;
+}
+.gk-quiz-btn[hidden] {
+  display: none;
+}
+.gk-quiz-btn svg {
+  flex: none;
+}
+
+/* ───────── Sonuç ───────── */
+.gk-quiz-result {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .gk-quiz-result {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 2.75rem;
+  }
+}
+
+.gk-quiz-art {
+  margin: 0;
+}
+.gk-quiz-art-frame {
+  position: relative;
+  border-radius: 4px;
+  background: var(--bone);
+  border: 1px solid var(--line);
+  padding: 1rem 0.5rem 0.25rem;
+}
+.gk-quiz-art-frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.gk-quiz-art-cap {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.gk-quiz-art-cap strong {
+  color: var(--ink);
+}
+
+.gk-quiz-result-name {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1;
+  outline: none;
+}
+.gk-quiz-result-tag {
+  margin-top: 0.65rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--kilim);
+}
+.gk-quiz-result-desc {
+  margin-top: 1rem;
+  font-size: 1.08rem;
+  color: var(--ink-2);
+  max-width: 34rem;
+}
+.gk-quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+.gk-quiz-status {
+  margin-top: 0.75rem;
+  min-height: 1.4rem;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+/* ───────── Yüklenirken ───────── */
+.gk-quiz-skeleton {
+  min-height: 31rem;
+}
+
+/* ───────── Davet kartı (QuizTeaser) ───────── */
+.gk-quiz-teaser {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: var(--shadow-warm);
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    border-color 0.3s var(--ease-out-expo);
+}
+.gk-quiz-teaser:hover {
+  transform: translateY(-2px);
+  border-color: var(--kilim);
+}
+.gk-quiz-teaser-art {
+  flex: none;
+  width: 6rem;
+  height: auto;
+}
+.gk-quiz-teaser-candy {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.gk-quiz-teaser:hover .gk-quiz-teaser-candy:nth-child(odd) {
+  transform: translateY(-3px) rotate(-4deg);
+}
+.gk-quiz-teaser:hover .gk-quiz-teaser-candy:nth-child(even) {
+  transform: translateY(-3px) rotate(4deg);
+}
+.gk-quiz-teaser-body {
+  flex: 1;
+  min-width: 0;
+}
+.gk-quiz-teaser-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+  line-height: 1.1;
+}
+.gk-quiz-teaser-sub {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+.gk-quiz-teaser-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--kilim);
+}
+.gk-quiz-teaser-cta svg {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.gk-quiz-teaser:hover .gk-quiz-teaser-cta svg {
+  transform: translateX(3px);
+}
+.gk-quiz-invite {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+.gk-quiz-invite-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: color-mix(in srgb, var(--ink) 42%, transparent);
+  cursor: pointer;
+}
+.gk-quiz-invite-card {
+  position: relative;
+  z-index: 1;
+  width: min(28rem, 100%);
+  overflow: hidden;
+  background: var(--bone);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.gk-quiz-invite-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.7rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.gk-quiz-invite-title {
+  margin: 1.5rem 1.5rem 0;
+  padding-right: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  line-height: 1.1;
+}
+.gk-quiz-invite-body {
+  margin: 0.5rem 1.5rem 0;
+  font-size: 1.05rem;
+  color: var(--ink-2);
+}
+.gk-quiz-invite-note {
+  margin: 0.85rem 1.5rem 0;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+.gk-quiz-invite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.35rem 1.5rem 1.5rem;
+}
+.gk-quiz-invite-cta {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  background: var(--kilim);
+  color: var(--on-kilim, var(--bone));
+  padding: 0 1.15rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.gk-quiz-invite-later {
+  min-height: 2.75rem;
+  border: 1px solid var(--ink-2);
+  background: transparent;
+  color: var(--ink);
+  padding: 0 1.15rem;
+  cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .gk-quiz-teaser {
+    flex-wrap: wrap;
+    gap: 0.9rem 1rem;
+  }
+  .gk-quiz-teaser-cta {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

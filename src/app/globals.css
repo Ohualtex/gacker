@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ───────── Tokens: aydınlık varsayılan ───────── */
+:root {
+  --bone: #fbf6ee;
+  --cream: #f4eadb;
+  --ink: #2a1a12;
+  --ink-2: #5b4636;
+  --kilim: #9b2b22;
+  --kilim-deep: #6e1d17;
+  --saffron: #c8952b;
+  --almond: #8a5a34;
+  --olive: #6e7b3c;
+  --line: rgba(42, 26, 18, 0.14);
+  --on-kilim: #fbf6ee;
+  --shadow-warm: 0 18px 40px -18px rgba(74, 38, 20, 0.35), 0 4px 10px -4px rgba(74, 38, 20, 0.18);
+  --nav-bg: rgba(251, 246, 238, 0.78);
+  color-scheme: light;
+}
+
+/* Sıcak espresso koyu tema (mavi yok) */
+:root[data-theme="dark"] {
+  --bone: #1c120d;
+  --cream: #26180f;
+  --ink: #f3e8d8;
+  --ink-2: #c9b59e;
+  --kilim: #d1594b;
+  --kilim-deep: #e4796b;
+  --saffron: #e0ae4a;
+  --almond: #c89a6a;
+  --olive: #a3b266;
+  --line: rgba(243, 232, 216, 0.16);
+  --on-kilim: #1c120d;
+  --shadow-warm: 0 18px 40px -18px rgba(0, 0, 0, 0.7), 0 4px 10px -4px rgba(0, 0, 0, 0.5);
+  --nav-bg: rgba(28, 18, 13, 0.78);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bone: var(--bone);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-kilim: var(--kilim);
+  --color-kilim-deep: var(--kilim-deep);
+  --color-saffron: var(--saffron);
+  --color-almond: var(--almond);
+  --color-olive: var(--olive);
+  --color-line: var(--line);
+  --font-display: var(--font-gloock), Georgia, serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --shadow-warm: var(--shadow-warm);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+/* ───────── Tarayıcı yüzeyleri ───────── */
+::selection { background: var(--kilim); color: var(--on-kilim); }
+
+:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+* { scrollbar-width: thin; scrollbar-color: var(--almond) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--almond); border-radius: 6px; border: 2px solid var(--bone); }
+
+a { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+
+/* Kullanıcı hareketi azaltmak istiyorsa */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ───────── Yardımcılar ───────── */
+.container-x {
+  width: min(100% - 2.5rem, 78rem);
+  margin-inline: auto;
+}
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s var(--ease-out-expo);
+}
+.link-underline:hover { background-size: 100% 1px; }

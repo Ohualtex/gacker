@@ -1,0 +1,476 @@
+/* Sinematik sahne: sabitlenmiş (sticky) çerçeve + kaydırma koşuyolu */
+.hm-runway {
+  position: relative;
+  height: 450svh;
+}
+
+.hm-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hm-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.hm-scene {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 64%;
+  padding: 4.5rem 12rem 1.5rem 0;
+  pointer-events: none;
+}
+
+.hm-sceneInner {
+  width: 100%;
+  height: 100%;
+}
+
+.hm-textLayer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-inline: max(1.25rem, calc((100vw - 78rem) / 2));
+  pointer-events: none;
+}
+
+.hm-block {
+  position: absolute;
+  left: max(1.25rem, calc((100vw - 78rem) / 2));
+  top: 50%;
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  column-gap: 1.4rem;
+  width: min(30rem, 38vw);
+  translate: 0 -50%;
+}
+
+.hm-title {
+  font-size: clamp(2.5rem, 4.8vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.012em;
+}
+
+.hm-body {
+  margin-top: 1.4rem;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-width: 34ch;
+  opacity: 0.86;
+}
+
+.hm-bodyWide {
+  max-width: 38ch;
+}
+
+.hm-rail {
+  position: relative;
+  width: 1rem;
+  align-self: stretch;
+}
+
+.hm-railTrack,
+.hm-railFill {
+  position: absolute;
+  left: 50%;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1.5px;
+  margin-left: -0.75px;
+  background: currentColor;
+}
+
+.hm-railTrack {
+  opacity: 0.22;
+}
+
+.hm-railFill {
+  transform-origin: top;
+}
+
+.hm-tick {
+  position: absolute;
+  left: 50%;
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-left: -0.31rem;
+  rotate: 45deg;
+  border: 1.5px solid currentColor;
+  background: transparent;
+}
+
+.hm-tickOn {
+  position: absolute;
+  inset: 1px;
+  background: var(--saffron);
+}
+
+.hm-hideSm {
+  display: inline;
+}
+
+@keyframes hm-steam {
+  0% {
+    opacity: 0;
+    transform: translate(0, 36px);
+  }
+  25% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, -64px);
+  }
+}
+
+.hm-steam {
+  opacity: 0;
+  animation: hm-steam 12s ease-in-out infinite;
+}
+
+/* Hareket azaltma: her bölüm kendi son hâliyle alt alta durur */
+.hm-staticWrap {
+  display: block;
+}
+
+.hm-staticChapter {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 2rem;
+  min-height: 92svh;
+  padding: 6rem max(1.25rem, calc((100vw - 78rem) / 2)) 4rem;
+  overflow: hidden;
+}
+
+.hm-staticText {
+  max-width: 30rem;
+}
+
+.hm-staticScene {
+  height: min(70svh, 44rem);
+  min-height: 20rem;
+}
+
+.hm-srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .hm-runway {
+    height: 380svh;
+  }
+
+  .hm-scene {
+    width: 100%;
+    bottom: auto;
+    height: 50%;
+    padding: 3.75rem 0.75rem 0;
+  }
+
+  .hm-block {
+    top: auto;
+    bottom: 1.4rem;
+    translate: 0 0;
+    width: calc(100vw - 2.5rem);
+    column-gap: 1rem;
+  }
+
+  .hm-title {
+    font-size: clamp(2.1rem, 9.4vw, 2.8rem);
+  }
+
+  .hm-body {
+    margin-top: 0.7rem;
+    font-size: clamp(0.86rem, 3.7vw, 0.97rem);
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  .hm-hideSm {
+    display: none;
+  }
+
+  .hm-staticChapter {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 5rem;
+  }
+
+  .hm-staticScene {
+    height: 22rem;
+    order: -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-steam {
+    animation: none;
+    opacity: 0.3;
+  }
+}
+
+/* ───────── Kayan bant ───────── */
+.hm-marquee {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(1.6rem, 4vw, 3.2rem);
+  border-block: 1px solid var(--line);
+  background: var(--bone);
+}
+
+.hm-marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: hm-marquee 62s linear infinite;
+}
+
+.hm-marquee:hover .hm-marqueeTrack,
+.hm-marquee:focus-within .hm-marqueeTrack {
+  animation-play-state: paused;
+}
+
+.hm-marqueeGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hm-marqueeWord {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  padding-inline: clamp(1.25rem, 3vw, 2.75rem);
+  white-space: nowrap;
+}
+
+.hm-marqueeDiamond {
+  flex-shrink: 0;
+  width: clamp(1.6rem, 3.4vw, 3rem);
+  height: clamp(1.6rem, 3.4vw, 3rem);
+}
+
+@keyframes hm-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hm-marqueeFade {
+  position: absolute;
+  inset-block: 0;
+  width: clamp(2rem, 8vw, 7rem);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hm-marqueeFade.hm-l {
+  left: 0;
+  background: linear-gradient(to right, var(--bone), transparent);
+}
+
+.hm-marqueeFade.hm-r {
+  right: 0;
+  background: linear-gradient(to left, var(--bone), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-marqueeTrack {
+    animation: none;
+    transform: none;
+  }
+  .hm-marquee {
+    overflow-x: auto;
+  }
+  .hm-marqueeDup {
+    display: none;
+  }
+}
+
+/* Mobilde bölüm 1 metni için altın zemin: yeşil tepelerin üstünde okunurluk */
+.hm-scrimA {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .hm-scrimA {
+    display: block;
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 50%;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(247, 220, 166, 0.97) 0%, rgba(247, 220, 166, 0.94) 66%, rgba(247, 220, 166, 0) 100%);
+  }
+}
+
+.hm-staticChapter > .hm-layer {
+  z-index: -1;
+}
+
+/* Ana giriş sahnesi: ufukta çok yavaş kayan sis */
+@keyframes hm-mist {
+  from {
+    transform: translateX(-7%);
+  }
+  to {
+    transform: translateX(7%);
+  }
+}
+
+.hm-mist {
+  animation: hm-mist 48s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-mist {
+    animation: none;
+  }
+}
+
+/* ───────── Tema değişkenleri: açık = gündüz, koyu = altın saat / espresso ───────── */
+:root {
+  --hero-fg: #2a1a12;
+  --hero-fg-2: #4a3526;
+  --hero-bg: #fbebd6;
+  --hero-scrim: linear-gradient(to bottom, rgba(251, 246, 238, 0.78) 0%, rgba(251, 246, 238, 0.18) 22%, transparent 42%),
+    linear-gradient(to top, rgba(251, 246, 238, 0.88) 0%, rgba(251, 246, 238, 0.42) 36%, transparent 62%),
+    linear-gradient(to right, rgba(251, 246, 238, 0.82) 0%, rgba(251, 246, 238, 0.28) 48%, transparent 72%);
+  --hero-title-shadow: none;
+  --h-sky: linear-gradient(to bottom, #fcf5ea 0%, #fbe9d4 30%, #f9d6b4 56%, #f4c598 76%, #f7d9ab 100%);
+  --h-halo: radial-gradient(circle, rgba(255, 248, 224, 1) 0%, rgba(255, 233, 183, 0.85) 9%, rgba(252, 207, 150, 0.5) 24%, rgba(248, 188, 134, 0.2) 44%, transparent 66%);
+  --h-disc: #fff9e4;
+  --h-disc-glow: 0 0 60px 28px rgba(255, 240, 192, 0.85), 0 0 160px 70px rgba(255, 208, 146, 0.4);
+  --h-hill-1: #efd9b4;
+  --h-hill-2: #dcc596;
+  --h-hill-3: #b9b277;
+  --h-castle: #ccb68c;
+  --h-hill-op: 1;
+  --h-bark: #5e3c28;
+  --h-petal: #fde8ec;
+  --h-petal-edge: #d68a9a;
+  --h-fall: #fbdde3;
+  --h-mist: rgba(255, 244, 222, 0.7);
+  --h-haze: rgba(255, 232, 190, 0.5);
+  --h-rays-op: 0.28;
+  --h-grain-op: 0.05;
+  --h-grain-blend: multiply;
+  /* sahne bölüm 2: duvar */
+  --sb0: #f2e6d3;
+  --sb1: #ecdcc4;
+  --sb2: #f6ecdc;
+  --sb3: #e8d6ba;
+  --sb4: #f0e1c9;
+  --sb-m: #d9c5a5;
+  --sb-light: radial-gradient(ellipse 60% 70% at 72% 44%, rgba(255, 214, 150, 0.4), transparent 70%), linear-gradient(to bottom, rgba(255, 250, 240, 0.4), transparent 30%, rgba(150, 105, 60, 0.14));
+  --st-fg: #2a1a12;
+  --st-steam: #b7966f;
+  --st-floor: 0.22;
+  /* keşfet bölümü */
+  --dc-bg: #f4eadb;
+  --dc-fg: #2a1a12;
+  --dc-fg-2: #5b4636;
+  --dc-stroke: #7a2a22;
+  --dc-fill: rgba(155, 43, 34, 0.06);
+  --dc-fill-hi: rgba(200, 149, 43, 0.28);
+  --dc-marker-bg: #fbf6ee;
+  --dc-marker: #9b2b22;
+  --dc-label: #2a1a12;
+  --dc-label-stroke: #f4eadb;
+  --dc-btn-bg: #9b2b22;
+  --dc-btn-fg: #fbf6ee;
+  --dc-weave: #9b2b22;
+  --dc-weave-op: 0.08;
+}
+
+:root[data-theme="dark"] {
+  --hero-fg: #fbf6ee;
+  --hero-fg-2: #f5e8d3;
+  --hero-bg: #2a1a12;
+  --hero-scrim: linear-gradient(to top, rgba(34, 18, 10, 0.82) 0%, rgba(34, 18, 10, 0.42) 34%, rgba(34, 18, 10, 0) 62%), linear-gradient(to right, rgba(34, 18, 10, 0.5) 0%, rgba(34, 18, 10, 0.18) 48%, rgba(34, 18, 10, 0) 70%);
+  --hero-title-shadow: 0 2px 24px rgba(34, 18, 10, 0.45);
+  --h-sky: linear-gradient(to bottom, #36200f 0%, #6a3a22 22%, #b2653a 46%, #e3984f 68%, #f2c27f 86%, #f7d9a2 100%);
+  --h-halo: radial-gradient(circle, rgba(255, 240, 196, 1) 0%, rgba(255, 214, 140, 0.85) 9%, rgba(250, 182, 98, 0.5) 22%, rgba(232, 140, 72, 0.2) 42%, transparent 66%);
+  --h-disc: #fff4d2;
+  --h-disc-glow: 0 0 70px 30px rgba(255, 226, 160, 0.75), 0 0 180px 80px rgba(255, 190, 110, 0.45);
+  --h-hill-1: #9a5a36;
+  --h-hill-2: #6b3a24;
+  --h-hill-3: #2e1a11;
+  --h-castle: #5a3322;
+  --h-hill-op: 0.92;
+  --h-bark: #4a2f20;
+  --h-petal: #f8e7e2;
+  --h-petal-edge: #e3b8b0;
+  --h-fall: #f8e7e2;
+  --h-mist: rgba(250, 205, 140, 0.38);
+  --h-haze: rgba(246, 190, 112, 0.22);
+  --h-rays-op: 0.16;
+  --h-grain-op: 0.09;
+  --h-grain-blend: overlay;
+  --sb0: #4a3322;
+  --sb1: #42291b;
+  --sb2: #503826;
+  --sb3: #3c2618;
+  --sb4: #47301f;
+  --sb-m: #2b1b11;
+  --sb-light: radial-gradient(ellipse 60% 70% at 72% 44%, rgba(255, 176, 98, 0.3), transparent 70%), linear-gradient(to bottom, rgba(20, 10, 5, 0.35), transparent 30%, rgba(20, 10, 5, 0.55));
+  --st-fg: #fbf1de;
+  --st-steam: #fff3e0;
+  --st-floor: 0.5;
+  --dc-bg: #4e1613;
+  --dc-fg: #f6ead2;
+  --dc-fg-2: #ebd9bc;
+  --dc-stroke: #f1ddba;
+  --dc-fill: rgba(246, 234, 210, 0.07);
+  --dc-fill-hi: rgba(231, 176, 74, 0.22);
+  --dc-marker-bg: #4e1613;
+  --dc-marker: #e7b04a;
+  --dc-label: #f6ead2;
+  --dc-label-stroke: #4e1613;
+  --dc-btn-bg: #f6ead2;
+  --dc-btn-fg: #4e1613;
+  --dc-weave: #f6ead2;
+  --dc-weave-op: 0.07;
+}
+
+/* Hero: video varken okunabilirlik için tema bağımsız yumuşak örtü */
+.hm-heroScrim {
+  background: var(--hero-scrim);
+}
+
+[data-video="true"] .hm-heroScrim {
+  background:
+    linear-gradient(to bottom, rgba(251, 246, 238, 0.62) 0%, rgba(251, 246, 238, 0) 20%),
+    linear-gradient(to top, rgba(251, 246, 238, 0.72) 0%, rgba(251, 246, 238, 0.3) 38%, rgba(251, 246, 238, 0) 64%),
+    linear-gradient(to right, rgba(251, 246, 238, 0.7) 0%, rgba(251, 246, 238, 0.28) 50%, rgba(251, 246, 238, 0) 74%);
+}
+
+:root[data-theme="dark"] [data-video="true"] .hm-heroScrim {
+  background:
+    linear-gradient(to bottom, rgba(28, 18, 13, 0.5) 0%, rgba(28, 18, 13, 0) 20%),
+    linear-gradient(to top, rgba(34, 18, 10, 0.82) 0%, rgba(34, 18, 10, 0.42) 34%, rgba(34, 18, 10, 0) 62%),
+    linear-gradient(to right, rgba(34, 18, 10, 0.5) 0%, rgba(34, 18, 10, 0.18) 48%, rgba(34, 18, 10, 0) 70%);
+}
+
+.hm-heroTitle {
+  text-shadow: var(--hero-title-shadow);
+}

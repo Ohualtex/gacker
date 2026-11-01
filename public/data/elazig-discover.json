@@ -1,0 +1,115 @@
+{
+ "items": [
+  {
+   "slug": "harput-kalesi",
+   "category": "place",
+   "title_tr": "Harput Kalesi",
+   "title_en": "Harput Castle",
+   "description_tr": "Harput Kalesi (Süt Kalesi), Elazığ'ın tarihî Harput mahallesinde bulunan, iç ve dış kale olmak üzere iki bölümlü bir yapıdır. Rivayete göre harcına su yerine süt katıldığı için 'Süt Kalesi' de denir.",
+   "description_en": "Harput Castle (also called 'Süt Kalesi', the Milk Castle) stands in Elazığ's historic Harput quarter and consists of an inner and an outer fortress. According to legend, milk was used instead of water in its mortar, hence the nickname.",
+   "source_url": "https://tr.wikipedia.org/wiki/Harput_Kalesi",
+   "verify": false,
+   "note": "Kalenin Urartular tarafından kurulduğu bilgisi Vikipedi'ye dayanır; süt rivayeti halk anlatısıdır."
+  },
+  {
+   "slug": "hazar-golu",
+   "category": "place",
+   "title_tr": "Hazar Gölü",
+   "title_en": "Lake Hazar",
+   "description_tr": "Hazar Gölü (Gölcük Gölü), Elazığ ilinde güneybatı-kuzeydoğu doğrultusunda uzanan tektonik bir göldür. Sivrice ilçesi gölün kıyısında yer alır.",
+   "description_en": "Lake Hazar (also known as Gölcük Lake) is a tectonic lake in Elazığ Province, stretching southwest to northeast. The district of Sivrice lies on its shore.",
+   "source_url": "https://tr.wikipedia.org/wiki/Hazar_G%C3%B6l%C3%BC",
+   "verify": false
+  },
+  {
+   "slug": "keban-baraji",
+   "category": "place",
+   "title_tr": "Keban Barajı",
+   "title_en": "Keban Dam",
+   "description_tr": "Keban Barajı, Elazığ'ın Keban ilçesinde Fırat Nehri üzerinde 1965-1975 yılları arasında inşa edilen, enerji üretimi amaçlı bir barajdır. Barajın oluşturduğu Keban Baraj Gölü, normal su kotunda 675 km² alana sahiptir.",
+   "description_en": "Keban Dam was built on the Euphrates in Elazığ's Keban district between 1965 and 1975 for hydroelectric power. The reservoir it created, Keban Dam Lake, covers 675 km² at normal water level.",
+   "source_url": "https://tr.wikipedia.org/wiki/Keban_Baraj%C4%B1_ve_Hidroelektrik_Santrali",
+   "verify": false
+  },
+  {
+   "slug": "buzluk-magarasi",
+   "category": "place",
+   "title_tr": "Buzluk Mağarası",
+   "title_en": "Buzluk Cave",
+   "description_tr": "Buzluk Mağarası, Harput Platosu üzerindeki Buzluk Tepe'nin kuzey yamacında, Elazığ merkeze yaklaşık 12 km mesafededir. Buz yazın oluşur, kışın oluşmaz; bu özelliğiyle Türkiye'de tek olarak anılır.",
+   "description_en": "Buzluk Cave lies on the northern slope of Buzluk Hill on the Harput Plateau, about 12 km from Elazığ city center. Ice forms in the cave in summer but not in winter, a trait described as unique in Turkey.",
+   "source_url": "https://tr.wikipedia.org/wiki/Elaz%C4%B1%C4%9F_Buzluk_Ma%C4%9Faras%C4%B1",
+   "verify": true,
+   "note": "'Türkiye'de tek' ve '45 mağaradan biri' ifadeleri yalnızca Vikipedi'de; bağımsız kaynakla doğrulanmadı."
+  },
+  {
+   "slug": "harput-ulu-cami",
+   "category": "place",
+   "title_tr": "Harput Ulu Camii",
+   "title_en": "Harput Great Mosque",
+   "description_tr": "Harput Ulu Camii, Artuklu hükümdarı Fahrettin Karaaslan tarafından 1156-1157 yılları arasında yaptırılmıştır ve Anadolu'nun en eski camilerinden biri sayılır. Hâlen ibadete açık olan caminin minaresi hafifçe eğiktir.",
+   "description_en": "Harput Great Mosque was commissioned by the Artuqid ruler Fakhr al-Din Qara Arslan between 1156 and 1157 and is regarded as one of the oldest mosques in Anatolia. It is still used for worship, and its minaret leans slightly.",
+   "source_url": "https://tr.wikipedia.org/wiki/Harput_Ulu_Camii",
+   "verify": false
+  },
+  {
+   "slug": "agin-leblebisi",
+   "category": "food",
+   "title_tr": "Ağın Leblebisi",
+   "title_en": "Ağın Chickpea (Leblebi)",
+   "description_tr": "Ağın, Elazığ'ın en küçük ilçesidir ve leblebisiyle tanınır. 'Ağın Leblebisi' 05.12.2017 tarihinde 259 numarayla menşe adı olarak coğrafi işaret tescili almıştır.",
+   "description_en": "Ağın is Elazığ's smallest district and is known for its roasted chickpeas (leblebi). 'Ağın Leblebisi' was registered as a protected designation of origin (geographical indication no. 259) on 5 December 2017.",
+   "source_url": "https://cografiisaretatlasi.com.tr/il/elazig/",
+   "verify": false,
+   "note": "Tescil bilgisi Coğrafi İşaret Atlası sayfasındandır; resmî kayıt için Türk Patent Coğrafi İşaretler Portalı'na bakılmalı."
+  },
+  {
+   "slug": "orcik",
+   "category": "food",
+   "title_tr": "Elazığ Orciği",
+   "title_en": "Elazığ Orcik",
+   "description_tr": "Orcik, bağ bozumunda ipe dizilmiş cevizlerin üzüm şırasına birkaç kez batırılıp kurutulmasıyla yapılan cevizli bir sucuk türüdür. 'Elazığ Orciği' 30.11.2018 tarihinde 398 numarayla menşe adı olarak tescil edilmiştir.",
+   "description_en": "Orcik is a walnut-based 'sausage' made during the grape harvest by repeatedly dipping walnuts strung on a thread into grape must and then drying them. 'Elazığ Orciği' was registered as a protected designation of origin (no. 398) on 30 November 2018.",
+   "source_url": "https://ci.turkpatent.gov.tr/cografi-isaretler/detay/38231",
+   "verify": false
+  },
+  {
+   "slug": "cedene-kahvesi",
+   "category": "food",
+   "title_tr": "Çedene Kahvesi",
+   "title_en": "Çedene Coffee",
+   "description_tr": "Elazığ Çedene Kahvesi, dağlık bölgelerde yabani yetişen çedene (Pistacia terebinthus L.) meyvelerinin kurutulup kavrulması ve öğütülmesiyle hazırlanan, macun kıvamında bir kahve ikamesidir. 22.02.2022'de 1034 numarayla mahreç işareti olarak tescil edilmiştir.",
+   "description_en": "Elazığ Çedene Coffee is a paste-like coffee substitute made by sun-drying, roasting and grinding the fruit of wild terebinth (Pistacia terebinthus L.) growing in the province's mountains. It was registered as an indication of source (no. 1034) on 22 February 2022.",
+   "source_url": "https://ci.turkpatent.gov.tr/Files/GeographicalSigns/1c5d177e-285f-4e42-bae0-5509130a0764.pdf",
+   "verify": false
+  },
+  {
+   "slug": "harput-koftesi",
+   "category": "food",
+   "title_tr": "Harput Köftesi",
+   "title_en": "Harput Köfte",
+   "description_tr": "Harput köftesi, Elazığ ve çevresinde özellikle bayramlarda hazırlanan bir tür içli köftedir; bulgurlu harç ve kıymalı içle fındık büyüklüğünde yapılıp tereyağlı, salçalı soslu suyunda pişirilir. Elazığ İl Tarım ve Orman Müdürlüğü, ürünü coğrafi işaret bekleyen çalışmalar arasında göstermektedir.",
+   "description_en": "Harput köfte is a kind of stuffed bulgur meatball prepared in Elazığ and its surroundings, especially on holidays; hazelnut-sized pieces with a minced-meat filling are cooked in a butter-and-tomato-paste sauce. The Elazığ Provincial Directorate of Agriculture lists it among geographical indications still pending.",
+   "source_url": "https://tr.wikipedia.org/wiki/Harput_k%C3%B6ftesi",
+   "verify": true,
+   "note": "'17. yüzyıla uzanır' iddiası Vikipedi'de var, metne alınmadı (kaynaksız). Coğrafi işaret henüz tescilli değil."
+  },
+  {
+   "slug": "badem-sekeri",
+   "category": "food",
+   "title_tr": "Elazığ Badem Şekeri",
+   "title_en": "Elazığ Almond Candy",
+   "description_tr": "Elazığ'da kavrulmuş yerli bademin pancar şekerinden yapılan şerbetle kazanlarda kaplanmasıyla üretilen badem şekeri, özellikle ramazanda iftardan sonra çayın yanında tüketilir. Yerel basında Osmanlı'dan gelen bir gelenek olarak anılsa da bu tarihî iddia belgeyle doğrulanmamıştır; coğrafi işaret tescili de henüz yoktur.",
+   "description_en": "In Elazığ, almond candy is made by coating roasted local almonds with a beet-sugar syrup in rotating pans, and is typically eaten with tea after iftar during Ramadan. Local press calls it an Ottoman-era tradition, but that historical claim is undocumented, and the product has no geographical-indication registration yet.",
+   "source_url": "https://www.ntv.com.tr/yasam/elazigin-yoresel-lezzeti-badem-sekeri-ramazanda-damaklari-tatlandiriyor,ejVt3w2upk2SoYWsLudOPQ",
+   "verify": true,
+   "note": "Üretim anlatımı AA/NTV (2021); 'Osmanlı' ifadesi ustaların beyanı, akademik kaynak yok. Bkz. .work/research-badem-sekeri.md"
+  }
+ ],
+ "excluded_unverified": [
+  "Baskil kayısısı",
+  "Pestil",
+  "Elazığ kilim/dokuma",
+  "Palu Tava (coğrafi işaret 21.01.2026, 1814 no; ayrıntı doğrulanamadı)"
+ ]
+}

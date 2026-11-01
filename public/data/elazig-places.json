@@ -1,0 +1,155 @@
+{
+ "note": "Koordinatlar Wikidata P625 ve OpenStreetMap (Nominatim) ile çapraz doğrulanmıştır; 'svg' alanı elazig-districts.svg.json viewBox'ına projekte edilmiş x,y'dir. OSM verisi © OpenStreetMap contributors (ODbL).",
+ "places": [
+  {
+   "id": "harput-kalesi",
+   "name_tr": "Harput Kalesi",
+   "name_en": "Harput Castle",
+   "lat": 38.7034,
+   "lon": 39.2574,
+   "district_id": "merkez",
+   "svg": [
+    455.3,
+    316.2
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q6017381; OSM way 97700117 (Nominatim 38.70345, 39.25722); tr.wikipedia Harput_Kalesi",
+   "source": "https://tr.wikipedia.org/wiki/Harput_Kalesi"
+  },
+  {
+   "id": "hazar-golu",
+   "name_tr": "Hazar Gölü",
+   "name_en": "Lake Hazar",
+   "lat": 38.4845,
+   "lon": 39.4047,
+   "district_id": "merkez",
+   "svg": [
+    529.8,
+    458.1
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q2380189 (gölün yaklaşık merkezi); OSM relation 398079 (38.4851, 39.4035)",
+   "source": "https://tr.wikipedia.org/wiki/Hazar_G%C3%B6l%C3%BC"
+  },
+  {
+   "id": "keban-baraji",
+   "name_tr": "Keban Barajı",
+   "name_en": "Keban Dam",
+   "lat": 38.8069,
+   "lon": 38.7569,
+   "district_id": "keban",
+   "svg": [
+    202.2,
+    249.1
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q1737672; OSM way 28431893 (38.8080, 38.7566)",
+   "source": "https://tr.wikipedia.org/wiki/Keban_Baraj%C4%B1_ve_Hidroelektrik_Santrali"
+  },
+  {
+   "id": "elazig-merkez",
+   "name_tr": "Elazığ şehir merkezi",
+   "name_en": "Elazığ city center",
+   "lat": 38.6667,
+   "lon": 39.2167,
+   "district_id": "merkez",
+   "svg": [
+    434.7,
+    340.0
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q174060 (şehir koordinatı)",
+   "source": "https://tr.wikipedia.org/wiki/Elaz%C4%B1%C4%9F"
+  },
+  {
+   "id": "baskil",
+   "name_tr": "Baskil",
+   "name_en": "Baskil",
+   "lat": 38.5675,
+   "lon": 38.8236,
+   "district_id": "baskil",
+   "svg": [
+    236.0,
+    404.3
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q810374 (ilçe merkezi)",
+   "source": "https://tr.wikipedia.org/wiki/Baskil"
+  },
+  {
+   "id": "agin",
+   "name_tr": "Ağın",
+   "name_en": "Ağın",
+   "lat": 38.9422,
+   "lon": 38.7156,
+   "district_id": "agin",
+   "svg": [
+    181.4,
+    161.5
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q794737 = tr.wikipedia Ağın sayfası koordinatı (38.94222, 38.71556)",
+   "source": "https://tr.wikipedia.org/wiki/A%C4%9F%C4%B1n"
+  },
+  {
+   "id": "palu",
+   "name_tr": "Palu",
+   "name_en": "Palu",
+   "lat": 38.6914,
+   "lon": 39.9294,
+   "district_id": "palu",
+   "svg": [
+    795.0,
+    324.0
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q1003910 (ilçe merkezi)",
+   "source": "https://tr.wikipedia.org/wiki/Palu"
+  },
+  {
+   "id": "sivrice",
+   "name_tr": "Sivrice",
+   "name_en": "Sivrice",
+   "lat": 38.4472,
+   "lon": 39.3092,
+   "district_id": "sivrice",
+   "svg": [
+    481.5,
+    482.2
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q928543 (ilçe merkezi)",
+   "source": "https://tr.wikipedia.org/wiki/Sivrice"
+  },
+  {
+   "id": "buzluk-magarasi",
+   "name_tr": "Buzluk Mağarası",
+   "name_en": "Buzluk Cave",
+   "lat": 38.7361,
+   "lon": 39.2828,
+   "district_id": "merkez",
+   "svg": [
+    468.1,
+    295.0
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "OSM node 3897367746 (Nominatim). Wikidata Q6007982 koordinat içermiyor; tr.wikipedia: Harput'a ~6 km, Elazığ merkeze ~12 km (yaklaşık tutarlı)",
+   "source": "https://tr.wikipedia.org/wiki/Elaz%C4%B1%C4%9F_Buzluk_Ma%C4%9Faras%C4%B1"
+  },
+  {
+   "id": "harput-ulu-cami",
+   "name_tr": "Harput Ulu Camii",
+   "name_en": "Harput Great Mosque",
+   "lat": 38.7061,
+   "lon": 39.2553,
+   "district_id": "merkez",
+   "svg": [
+    454.2,
+    314.5
+   ],
+   "accuracy": "~100-500 m (yaklaşık)",
+   "verified_with": "Wikidata Q6023683; OSM way 97702342 (38.70608, 39.25522)",
+   "source": "https://tr.wikipedia.org/wiki/Harput_Ulu_Camii"
+  }
+ ]
+}

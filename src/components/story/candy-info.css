@@ -1,0 +1,248 @@
+/* Badem Şekeri Bilgi Köşesi — dergi-editoryal, hairline çizgilerle ayrılmış kartlar */
+.gk-info {
+  background: var(--bone);
+}
+
+.gk-info-inner {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.gk-info-head {
+  display: grid;
+  gap: 1.25rem 4rem;
+  align-items: end;
+}
+@media (min-width: 62rem) {
+  .gk-info-head {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  }
+}
+
+.gk-info-title {
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  max-width: 14ch;
+}
+
+.gk-info-lead {
+  max-width: 34rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* Sekmeler */
+.gk-info-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  margin-top: clamp(2.25rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.gk-info-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.85rem 0.1rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1.6vw, 1.4rem);
+  color: var(--ink-2);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.35s var(--ease-out-expo);
+}
+.gk-info-tab:hover,
+.gk-info-tab[data-active="true"] {
+  color: var(--ink);
+}
+
+.gk-info-tab-count {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--almond);
+}
+
+.gk-info-tab-ink {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--kilim);
+}
+
+/* Panel */
+.gk-info-panel {
+  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+.gk-info-panel:focus-visible {
+  outline-offset: 6px;
+}
+
+.gk-info-note {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  max-width: 46rem;
+  margin: 0 0 2.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.gk-info-note-icon {
+  flex: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.2rem;
+  color: var(--almond);
+}
+
+/* Kart ızgarası */
+.gk-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 0 clamp(1.75rem, 3.5vw, 3.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gk-info-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.75rem 0 2.25rem;
+  border-top: 1px solid var(--line);
+}
+/* Üst çizginin başında kısa kilim vurgusu; üzerine gelince uzar */
+.gk-info-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 2.5rem;
+  height: 3px;
+  background: var(--kilim);
+  transition: width 0.6s var(--ease-out-expo);
+}
+.gk-info-card:hover::before,
+.gk-info-card:focus-within::before {
+  width: 5rem;
+}
+
+.gk-info-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin: 0 0 0.35rem;
+  line-height: 1;
+}
+.gk-info-stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 6vw, 5rem);
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--kilim);
+}
+.gk-info-stat-unit {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  color: var(--almond);
+}
+
+.gk-info-card-title {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  line-height: 1.12;
+}
+.gk-info-card-title--stat {
+  font-size: 1.25rem;
+}
+
+.gk-info-card-body {
+  margin: 0.8rem 0 0;
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* Alerji rozeti */
+.gk-info-allergy {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 1.1rem 0 0;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--saffron);
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--saffron) 14%, var(--bone));
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.gk-info-allergy-icon {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.1rem;
+  color: var(--almond);
+}
+
+/* Kaynak bağlantısı */
+.gk-info-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: 100%;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-out-expo);
+}
+.gk-info-source-label {
+  flex: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  color: var(--almond);
+}
+.gk-info-source-name {
+  min-width: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  overflow-wrap: anywhere;
+}
+.gk-info-source-icon {
+  flex: none;
+  width: 0.85rem;
+  height: 0.85rem;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+.gk-info-source:hover {
+  color: var(--kilim);
+}
+.gk-info-source:hover .gk-info-source-name {
+  text-decoration-color: currentColor;
+}
+.gk-info-source:hover .gk-info-source-icon {
+  transform: translate(2px, -2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gk-info-card::before,
+  .gk-info-source-icon {
+    transition: none;
+  }
+}

@@ -1,0 +1,43 @@
+import type { Locale } from "@/lib/i18n";
+
+/** Gakkoş Sözlüğü arayüz metinleri (veri: src/data/glossary.ts). */
+export const glossaryUi = {
+  tr: {
+    id: "sozluk",
+    title: "Gakkoş Sözlüğü",
+    lead: "Elazığ ağzından sözcükler. Arayın ya da harfe göre süzün; her kartta kaynağı var.",
+    searchLabel: "Sözlükte ara",
+    searchPlaceholder: "Sözcük ya da anlam ara",
+    clear: "Aramayı temizle",
+    all: "Tümü",
+    letters: "Harfe göre süz",
+    words: "sözcük",
+    showMore: "Daha fazla göster",
+    empty: "Eşleşen sözcük bulunamadı. Başka bir yazılış ya da harf deneyin.",
+    example: "Örnek",
+    source: "Kaynak",
+    tab: "Sözlük",
+    back: "Sohbete dön",
+    compactTitle: "Gakkoş Sözlüğü",
+    exampleEnNote: "Türkçe örnek",
+  },
+  en: {
+    id: "sozluk",
+    title: "Gakkoş Glossary",
+    lead: "Words from the Elazığ dialect. Search or filter by letter; every card links its source.",
+    searchLabel: "Search the glossary",
+    searchPlaceholder: "Search a word or meaning",
+    clear: "Clear search",
+    all: "All",
+    letters: "Filter by letter",
+    words: "words",
+    showMore: "Show more",
+    empty: "No matching word found. Try another spelling or letter.",
+    example: "Example",
+    source: "Source",
+    tab: "Glossary",
+    back: "Back to chat",
+    compactTitle: "Gakkoş Glossary",
+    exampleEnNote: "Turkish example",
+  },
+} as const satisfies Record<Locale, Record<string, string>>;
