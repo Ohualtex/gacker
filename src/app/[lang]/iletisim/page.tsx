@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Mail } from "lucide-react";
-import { getDictionary } from "@/lib/dictionaries";
+import { getLiveDictionary, getSetting } from "@/lib/cms/queries";
 import { hasLocale } from "@/lib/i18n";
+import { ContactMessageForm } from "@/components/forms/ContactMessageForm";
+import { ProducerRequestForm } from "@/components/forms/ProducerRequestForm";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { AlmondMark } from "@/components/ui/Logo";
 import { Reveal } from "@/components/ui/Reveal";
@@ -12,15 +14,16 @@ import { CONTACT_EMAIL, contact } from "@/content/contact";
 export async function generateMetadata({ params }: PageProps<"/[lang]/iletisim">): Promise<Metadata> {
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
-  const dict = getDictionary(lang);
+  const dict = await getLiveDictionary(lang);
   return { title: dict.pages.contact.title, description: dict.pages.contact.lead };
 }
 
 export default async function Page({ params }: PageProps<"/[lang]/iletisim">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
-  const dict = getDictionary(lang);
+  const dict = await getLiveDictionary(lang);
   const t = contact[lang];
+  const liveEmail = await getSetting("contactEmail", CONTACT_EMAIL ?? "");
 
   return (
     <>
@@ -38,9 +41,9 @@ export default async function Page({ params }: PageProps<"/[lang]/iletisim">) {
           <div className="mt-12 border-t border-line pt-8">
             <h2 className="text-2xl">{t.reach.title}</h2>
             <p className="mt-3 text-ink-2">{t.reach.body}</p>
-            {CONTACT_EMAIL ? (
+            {liveEmail ? (
               <a
-                href={`mailto:${CONTACT_EMAIL}`}
+                href={`mailto:${liveEmail}`}
                 className="group mt-5 inline-flex items-center gap-2 font-semibold text-kilim"
               >
                 <Mail className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
@@ -79,6 +82,21 @@ export default async function Page({ params }: PageProps<"/[lang]/iletisim">) {
             </Link>
           </div>
         </Reveal>
+      </section>
+
+      <section className="bg-cream">
+        <div className="container-x grid gap-14 py-16 md:grid-cols-2 md:py-24">
+          <div>
+            <h2 className="text-[clamp(1.75rem,3vw,2.5rem)]">{dict.pages.request.messageTitle}</h2>
+            <p className="mt-3 mb-6 text-ink-2">{t.reach.body}</p>
+            <ContactMessageForm lang={lang} dict={dict} />
+          </div>
+          <div>
+            <h2 className="text-[clamp(1.75rem,3vw,2.5rem)]">{dict.pages.request.title}</h2>
+            <p className="mt-3 mb-6 text-ink-2">{dict.pages.request.lead}</p>
+            <ProducerRequestForm lang={lang} dict={dict} />
+          </div>
+        </div>
       </section>
     </>
   );

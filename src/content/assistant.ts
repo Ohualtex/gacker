@@ -38,13 +38,13 @@ export const assistantContent: Record<Locale, AssistantStrings> = {
     typing: "yazıyor…",
     retry: "Tekrar dene",
     greeting:
-      "Hoş geldin, ben Gakkocan! Badem şekeri, hediye geleneği ve Elazığ hakkında bildiklerimi anlatırım, buyur. Bilmediğimi de açıkça söylerim.",
+      "Hoş geldin gakkoş, buyur. Ben Gakkocan, tezgâh başındayım. Gel horata edek — badem şekeri, hediye, Elazığ. Ne soracaksın?",
     you: "Siz",
     assistant: "Badem Rehberi",
     starters: [
-      "Badem şekeri nedir?",
-      "Hediye olarak neden verilir?",
-      "Elazığ'da üretici nasıl bulurum?",
+      "Badem şekeri nedir gakkoş?",
+      "Hediye olarak niye verilir?",
+      "Elazığ'da üreticiyi nasıl bulurum?",
     ],
     errors: {
       not_configured:

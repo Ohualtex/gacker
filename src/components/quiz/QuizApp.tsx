@@ -12,23 +12,23 @@ import {
   QUIZ_SLUG,
   isQuizTypeId,
   quizCopy,
-  quizQuestions,
+  quizQuestions as fallbackQuestions,
   quizResults,
   scoreQuiz,
+  type QuizQuestion,
   type QuizTypeId,
 } from "@/content/quiz";
 import "./quiz.css";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const TOTAL = quizQuestions.length;
 const ADVANCE_DELAY_MS = 280;
 const LETTERS = ["A", "B", "C", "D"];
 
 type ShareState = "idle" | "copied" | "failed";
 
-function Progress({ step, label }: { step: number; label: string }) {
+function Progress({ step, label, total }: { step: number; label: string; total: number }) {
   const reduce = usePrefersReducedMotion();
-  const pct = ((step + 1) / TOTAL) * 100;
+  const pct = ((step + 1) / total) * 100;
   return (
     <div className="gk-quiz-progress">
       <div className="gk-quiz-progress-label">
@@ -39,7 +39,7 @@ function Progress({ step, label }: { step: number; label: string }) {
         role="progressbar"
         aria-label={label}
         aria-valuemin={1}
-        aria-valuemax={TOTAL}
+        aria-valuemax={total}
         aria-valuenow={step + 1}
       >
         <div className="gk-quiz-bar-ghost" aria-hidden="true">
@@ -58,8 +58,9 @@ function Progress({ step, label }: { step: number; label: string }) {
   );
 }
 
-export function QuizApp({ lang }: { lang: Locale }) {
+export function QuizApp({ lang, questions = fallbackQuestions }: { lang: Locale; questions?: QuizQuestion[] }) {
   const t = quizCopy[lang];
+  const TOTAL = questions.length;
   const reduce = usePrefersReducedMotion();
   const searchParams = useSearchParams();
 
@@ -118,7 +119,7 @@ export function QuizApp({ lang }: { lang: Locale }) {
       if (step < TOTAL - 1) {
         setStep(step + 1);
       } else {
-        const type = scoreQuiz(next);
+        const type = scoreQuiz(next, questions);
         setResult(type);
         writeUrl(type);
       }
@@ -248,13 +249,13 @@ export function QuizApp({ lang }: { lang: Locale }) {
     );
   }
 
-  const q = quizQuestions[step];
+  const q = questions[step];
   const selected = answers[step];
   const progressLabel = t.progressLabel.replace("{n}", String(step + 1)).replace("{total}", String(TOTAL));
 
   return (
     <div className="gk-quiz-card">
-      <Progress step={step} label={progressLabel} />
+      <Progress step={step} label={progressLabel} total={TOTAL} />
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={step} {...slide} onAnimationComplete={focusHeading}>
           <h2 ref={headingRef} tabIndex={-1} id={`gk-quiz-q-${step}`} className="gk-quiz-question">

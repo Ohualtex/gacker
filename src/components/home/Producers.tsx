@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 import { producers as copy } from "@/content/home";
-import { producers } from "@/data/producers";
+import { getCopyValue, getProducers } from "@/lib/cms/queries";
 import { KilimBand } from "@/components/ui/KilimBand";
 import { InViewWords, Rise } from "./motion";
 import { ProducersRail } from "./ProducersRail";
@@ -28,17 +28,19 @@ function Motif({ i, color }: { i: number; color: string }) {
   );
 }
 
-export function Producers({ lang }: { lang: Locale }) {
-  const list = producers;
+export async function Producers({ lang }: { lang: Locale }) {
+  const list = await getProducers();
+  const title = await getCopyValue("home.producers.title", lang, copy.title[lang]);
+  const lead = await getCopyValue("home.producers.lead", lang, copy.lead[lang]);
   return (
     <section className="relative bg-bone pb-24 pt-28 md:pt-40">
       <div className="container-x grid items-end gap-8 md:grid-cols-12">
         <InViewWords
-          text={copy.title[lang]}
+          text={title}
           className="text-[clamp(2.8rem,7.2vw,6rem)] md:col-span-7"
         />
         <Rise delay={0.25} className="md:col-span-5">
-          <p className="max-w-md text-ink-2">{copy.lead[lang]}</p>
+          <p className="max-w-md text-ink-2">{lead}</p>
           <Link href={`/${lang}/ureticiler`} className="mt-6 inline-flex items-center gap-2 font-semibold text-kilim">
             <span className="link-underline">{copy.cta[lang]}</span>
             <ArrowUpRight className="h-4 w-4" strokeWidth={2} />

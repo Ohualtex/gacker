@@ -5,6 +5,7 @@ import { hasLocale } from "@/lib/i18n";
 import { KilimBand } from "@/components/ui/KilimBand";
 import { QuizApp } from "@/components/quiz/QuizApp";
 import { quizCopy } from "@/content/quiz";
+import { getQuizQuestions } from "@/lib/cms/queries";
 import "@/components/quiz/quiz.css";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/hangi-badem-sekeri">): Promise<Metadata> {
@@ -18,6 +19,7 @@ export default async function Page({ params }: PageProps<"/[lang]/hangi-badem-se
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const t = quizCopy[lang];
+  const questions = await getQuizQuestions();
 
   return (
     <>
@@ -32,7 +34,7 @@ export default async function Page({ params }: PageProps<"/[lang]/hangi-badem-se
       <section className="gk-quiz-stage" aria-label={t.title}>
         <div>
           <Suspense fallback={<div className="gk-quiz-card gk-quiz-skeleton" aria-hidden="true" />}>
-            <QuizApp lang={lang} />
+            <QuizApp lang={lang} questions={questions} />
           </Suspense>
         </div>
         <p className="gk-quiz-note">{t.disclaimer}</p>

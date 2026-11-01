@@ -1,0 +1,231 @@
+.ad-shell {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 17.5rem 1fr;
+  background: #1c120d;
+  color: #f3e8d8;
+}
+
+.ad-side {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  padding: 1.75rem 1.25rem;
+  border-right: 1px solid rgba(243, 232, 216, 0.08);
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(209, 89, 75, 0.16), transparent 42%),
+    #160e0a;
+}
+
+.ad-brand {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 2rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.ad-brand span {
+  display: block;
+  margin-top: 0.45rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c9b59e;
+}
+
+.ad-nav {
+  margin-top: 2rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.ad-nav a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.62rem 0.75rem;
+  color: #c9b59e;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.ad-nav a[data-active="true"],
+.ad-nav a:hover {
+  background: rgba(243, 232, 216, 0.08);
+  color: #f3e8d8;
+}
+
+.ad-nav b {
+  font-weight: 600;
+  color: #e0ae4a;
+  font-size: 0.78rem;
+}
+
+.ad-main {
+  min-width: 0;
+  background: #fbf6ee;
+  color: #2a1a12;
+}
+
+.ad-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  padding: 1.75rem 2rem 1.25rem;
+  border-bottom: 1px solid rgba(42, 26, 18, 0.1);
+}
+
+.ad-page {
+  padding: 1.5rem 2rem 3rem;
+}
+
+.ad-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 0.95;
+}
+
+.ad-lead {
+  margin-top: 0.4rem;
+  color: #5b4636;
+}
+
+.ad-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ad-table th,
+.ad-table td {
+  text-align: left;
+  padding: 0.85rem 0.4rem;
+  border-bottom: 1px solid rgba(42, 26, 18, 0.1);
+  vertical-align: top;
+}
+
+.ad-table th {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5b4636;
+}
+
+.ad-card {
+  background: #f4eadb;
+  border: 1px solid rgba(42, 26, 18, 0.1);
+  border-radius: 4px;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 18px 40px -18px rgba(74, 38, 20, 0.2);
+}
+
+.ad-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.ad-grid.two {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ad-field label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5b4636;
+  margin-bottom: 0.35rem;
+}
+
+.ad-field input,
+.ad-field textarea,
+.ad-field select {
+  width: 100%;
+  border: 1px solid rgba(42, 26, 18, 0.16);
+  background: #fbf6ee;
+  color: #2a1a12;
+  border-radius: 3px;
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+}
+
+.ad-field textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.ad-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+}
+
+.ad-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 0;
+  background: #9b2b22;
+  color: #fbf6ee;
+  padding: 0.7rem 1.1rem;
+  border-radius: 3px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.ad-btn.ghost {
+  background: transparent;
+  color: #9b2b22;
+  border: 1px solid rgba(155, 43, 34, 0.3);
+}
+
+.ad-btn.quiet {
+  background: #2a1a12;
+}
+
+.ad-login {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(155, 43, 34, 0.16), transparent 36%),
+    #fbf6ee;
+}
+
+.ad-login form {
+  width: min(100%, 28rem);
+}
+
+.ad-error {
+  color: #9b2b22;
+  margin: 0.75rem 0 0;
+}
+
+.ad-badge {
+  display: inline-flex;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(155, 43, 34, 0.1);
+  color: #9b2b22;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .ad-shell {
+    grid-template-columns: 1fr;
+  }
+  .ad-side {
+    height: auto;
+    position: relative;
+  }
+  .ad-grid.two {
+    grid-template-columns: 1fr;
+  }
+}

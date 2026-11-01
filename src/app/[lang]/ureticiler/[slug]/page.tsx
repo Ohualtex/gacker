@@ -8,6 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { DemoBadge } from "@/components/producers/DemoBadge";
 import { ProducerImage } from "@/components/producers/ProducerImage";
 import { getProducer, mapsUrl, producers, splitPhones, type ProducerSocials } from "@/data/producers";
+import { getProducerBySlug } from "@/lib/cms/queries";
 import { producersPage } from "@/content/producers-page";
 
 export function generateStaticParams() {
@@ -18,7 +19,7 @@ export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/ureticiler/[slug]">): Promise<Metadata> {
   const { lang, slug } = await params;
-  const producer = getProducer(slug);
+  const producer = (await getProducerBySlug(slug)) ?? getProducer(slug);
   if (!hasLocale(lang) || !producer) return {};
   return { title: producer.name, description: producer.tagline[lang] };
 }
@@ -35,7 +36,7 @@ const SOCIAL_ORDER: (keyof ProducerSocials)[] = [
 export default async function Page({ params }: PageProps<"/[lang]/ureticiler/[slug]">) {
   const { lang, slug } = await params;
   if (!hasLocale(lang)) notFound();
-  const producer = getProducer(slug);
+  const producer = (await getProducerBySlug(slug)) ?? getProducer(slug);
   if (!producer) notFound();
 
   const t = producersPage[lang];

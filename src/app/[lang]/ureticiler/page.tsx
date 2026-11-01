@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, MapPin } from "lucide-react";
-import { getDictionary } from "@/lib/dictionaries";
+import { getLiveDictionary, getProducers } from "@/lib/cms/queries";
 import { hasLocale } from "@/lib/i18n";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ImageSlot, type Motif } from "@/components/ui/ImageSlot";
 import { Reveal } from "@/components/ui/Reveal";
 import { DemoBadge } from "@/components/producers/DemoBadge";
 import { ProducerImage } from "@/components/producers/ProducerImage";
-import { producers } from "@/data/producers";
 import { producersPage } from "@/content/producers-page";
 import { IdentifyCriteria } from "@/components/story/IdentifyCriteria";
 import { KilimBand } from "@/components/ui/KilimBand";
+import { ProducerRequestForm } from "@/components/forms/ProducerRequestForm";
 
 const MOTIFS: Motif[] = ["tray", "candy", "pan"];
 
@@ -21,14 +21,15 @@ export async function generateMetadata({
 }: PageProps<"/[lang]/ureticiler">): Promise<Metadata> {
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
-  const dict = getDictionary(lang);
+  const dict = await getLiveDictionary(lang);
   return { title: dict.pages.producers.title, description: dict.pages.producers.lead };
 }
 
 export default async function Page({ params }: PageProps<"/[lang]/ureticiler">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
-  const dict = getDictionary(lang);
+  const dict = await getLiveDictionary(lang);
+  const producers = await getProducers();
   const t = producersPage[lang];
   const hasDemo = producers.some((p) => p.demo);
 
@@ -117,6 +118,17 @@ export default async function Page({ params }: PageProps<"/[lang]/ureticiler">) 
       )}
       <KilimBand height={16} />
       <IdentifyCriteria lang={lang} />
+      <section className="bg-cream">
+        <div className="container-x grid gap-10 py-20 md:grid-cols-12 md:py-28">
+          <div className="md:col-span-5">
+            <h2 className="text-[clamp(2rem,4vw,3.2rem)]">{dict.pages.request.title}</h2>
+            <p className="mt-4 max-w-md text-lg text-ink-2">{dict.pages.request.lead}</p>
+          </div>
+          <div className="md:col-span-7">
+            <ProducerRequestForm lang={lang} dict={dict} />
+          </div>
+        </div>
+      </section>
     </>
   );
 }

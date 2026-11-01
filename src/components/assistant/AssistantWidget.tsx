@@ -23,7 +23,7 @@ import "./assistant-widget.css";
 export const ASSISTANT_OPEN_EVENT = "gk-assistant:open";
 export const ASSISTANT_TOGGLE_EVENT = "gk-assistant:toggle";
 
-const STORAGE_KEY = "gk-assistant-v1";
+const STORAGE_KEY = "gk-assistant-v3";
 const MAX_INPUT = 1000;
 const MAX_HISTORY = 20;
 
@@ -305,12 +305,12 @@ export function AssistantWidget({
           aria-modal="false"
           aria-labelledby="gk-assistant-title"
           onKeyDown={onPanelKeyDown}
-          className={`gk-assistant-panel flex flex-col overflow-hidden rounded-[6px] border border-line bg-bone text-ink shadow-warm`}
+          className={`gk-assistant-panel flex flex-col overflow-hidden rounded-[6px] border border-line bg-bone font-sans text-ink shadow-warm`}
         >
           <KilimBand height={8} />
           <header className="flex items-start justify-between gap-3 px-4 pb-3 pt-3">
             <div>
-              <h2 id="gk-assistant-title" className="font-display text-xl leading-tight">
+              <h2 id="gk-assistant-title" className="font-sans text-xl font-semibold leading-tight tracking-tight">
                 {t.title}
               </h2>
               <p className="mt-0.5 text-xs text-ink-2">{t.disclaimer}</p>

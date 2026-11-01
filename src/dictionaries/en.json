@@ -85,6 +85,25 @@
       "title": "Contact",
       "lead": "Get in touch."
     },
+    "request": {
+      "title": "Get listed as a producer",
+      "lead": "If you make or sell almond candy, fill in the form. You appear on the list after we verify the record.",
+      "name": "Business name",
+      "email": "Email",
+      "intro": "Short introduction",
+      "address": "Full address",
+      "phone": "Phone",
+      "website": "Website",
+      "socials": "Social media",
+      "hours": "Opening hours",
+      "notes": "Notes or photo links",
+      "submit": "Send request",
+      "success": "We received your request. It will appear on the list after verification.",
+      "messageTitle": "Write to us",
+      "message": "Your message",
+      "messageSubmit": "Send message",
+      "messageSuccess": "Your message arrived."
+    },
     "gallery": {
       "title": "Gallery",
       "lead": "From almond blossom to tray, a journey in pictures."

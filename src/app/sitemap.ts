@@ -2,13 +2,14 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { legalSlugs } from "@/content/legal";
 import { legalConfig } from "@/content/legal-config";
-import { producers } from "@/data/producers";
+import { getProducers } from "@/lib/cms/queries";
 import { getSiteUrl } from "@/lib/site-url";
 
 /** Ana sayfa + alt sayfalar + hukuki sayfalar + üretici detayları; her biri için tüm diller. */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
   const now = new Date();
+  const producers = await getProducers();
 
   const paths: { path: string; priority: number; lastModified?: Date }[] = [
     { path: "", priority: 1 },

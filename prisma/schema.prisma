@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Producer {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  name       String
+  demo       Boolean  @default(false)
+  published  Boolean  @default(true)
+  sortOrder  Int      @default(0)
+  city       String   @default("Elazığ")
+  address    String?
+  phone      String?
+  website    String?
+  instagram  String?
+  image      String?
+  mapUrl     String?
+  roleTr     String   @default("")
+  roleEn     String   @default("")
+  taglineTr  String   @default("")
+  taglineEn  String   @default("")
+  storyTr    String   @default("")
+  storyEn    String   @default("")
+  hoursTr    String   @default("")
+  hoursEn    String   @default("")
+  branches   Json     @default("[]")
+  products   Json     @default("[]")
+  socials    Json     @default("{}")
+  extraLinks Json     @default("[]")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Place {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  nameTr    String
+  nameEn    String
+  bodyTr    String   @default("")
+  bodyEn    String   @default("")
+  category  String   @default("place")
+  lat       Float?
+  lng       Float?
+  svgX      Float?
+  svgY      Float?
+  source    String?
+  image     String?
+  published Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GalleryItem {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  src        String
+  w          Int
+  h          Int
+  category   String
+  altTr      String
+  altEn      String
+  captionTr  String
+  captionEn  String
+  ai         Boolean  @default(true)
+  credit     String?
+  published  Boolean  @default(true)
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model CopyEntry {
+  key       String   @id
+  group     String
+  tr        String
+  en        String
+  updatedAt DateTime @updatedAt
+}
+
+model StoryChapter {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  titleTr   String
+  titleEn   String
+  bodyTr    String
+  bodyEn    String
+  image     String?
+  motif     String   @default("almond")
+  slotTr    String   @default("")
+  slotEn    String   @default("")
+  published Boolean  @default(true)
+  sortOrder Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model IdentifyItem {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  titleTr   String
+  titleEn   String
+  bodyTr    String
+  bodyEn    String
+  sortOrder Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model QuizQuestion {
+  id        String   @id @default(cuid())
+  promptTr  String
+  promptEn  String
+  options   Json
+  sortOrder Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model ProducerRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  intro     String
+  address   String
+  phone     String   @default("")
+  website   String   @default("")
+  socials   String   @default("")
+  hours     String   @default("")
+  notes     String   @default("")
+  lang      String   @default("tr")
+  status    String   @default("new")
+  ipHash    String?
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  lang      String   @default("tr")
+  read      Boolean  @default(false)
+  ipHash    String?
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+}

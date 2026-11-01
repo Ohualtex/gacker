@@ -5,6 +5,7 @@ import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries";
 import { KilimBand } from "@/components/ui/KilimBand";
 import { RevealWords } from "@/components/ui/RevealWords";
+import { getGalleryItems } from "@/lib/cms/queries";
 import { HeroBand } from "./HeroBand";
 import { HeroVideo } from "./HeroVideo";
 
@@ -21,14 +22,15 @@ function heroSources() {
   ].filter((s) => fs.existsSync(path.join(dir, s.src.split("/").pop() as string)));
 }
 
-export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
+export async function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const sources = heroSources();
+  const gallery = await getGalleryItems();
   return (
     <section
       data-video={sources.length > 0 ? "true" : "false"}
       className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-[var(--hero-bg)] text-[var(--hero-fg)]"
     >
-      <HeroBand lang={lang} />
+      <HeroBand images={gallery.map((item) => ({ src: item.src, alt: item.alt[lang] }))} />
       {sources.length > 0 && <HeroVideo label={dict.hero.videoLabel} sources={sources} />}
       <div aria-hidden="true" className="hm-heroScrim absolute inset-0 -z-10" />
 

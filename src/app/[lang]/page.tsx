@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getDictionary } from "@/lib/dictionaries";
+import { getLiveDictionary } from "@/lib/cms/queries";
 import { hasLocale } from "@/lib/i18n";
 import { Hero } from "@/components/home/Hero";
 import { Marquee } from "@/components/home/Marquee";
@@ -13,7 +13,7 @@ import { AssistantCta } from "@/components/home/AssistantCta";
 export default async function HomePage({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
-  const dict = getDictionary(lang);
+  const dict = await getLiveDictionary(lang);
 
   return (
     <>

@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 import { gallery as copy } from "@/content/home";
-import { galleryCopy, galleryItems } from "@/content/gallery";
+import { galleryCopy } from "@/content/gallery";
+import { getGalleryItems } from "@/lib/cms/queries";
 import { Rise, ClipReveal } from "./motion";
 
 type Motif = "branch" | "kazan" | "tray" | "tower" | "blossom" | "kilim";
@@ -86,9 +87,10 @@ const TILES: { id: string; motif: Motif; span: string; ratio: string; offset: st
   { id: "kilim-textile-detail", motif: "kilim", span: "col-span-2 md:col-span-5", ratio: "4 / 3", offset: "md:mt-2" },
 ];
 
-export function Gallery({ lang }: { lang: Locale }) {
+export async function Gallery({ lang }: { lang: Locale }) {
   const captions = copy.captions[lang];
   const badge = galleryCopy[lang].aiBadge;
+  const galleryItems = await getGalleryItems();
   return (
     <section className="relative overflow-hidden bg-bone pb-32 pt-24 md:pb-44 md:pt-36">
       <div className="container-x grid items-end gap-8 md:grid-cols-12">

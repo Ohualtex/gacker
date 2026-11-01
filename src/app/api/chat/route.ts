@@ -1,4 +1,5 @@
 import { buildSystemPrompt } from "@/lib/assistant-prompt";
+import { getProducers } from "@/lib/cms/queries";
 import { hasLocale, type Locale } from "@/lib/i18n";
 
 /**
@@ -138,7 +139,10 @@ export async function POST(request: Request) {
         max_tokens: 600,
         // Gemini 2.5 "düşünme" jetonları yanıtı boğmasın (OpenAI-uyumlu uçta desteklenir)
         ...(/generativelanguage\.googleapis\.com/.test(baseUrl) ? { reasoning_effort: "none" } : {}),
-        messages: [{ role: "system", content: buildSystemPrompt(result.lang) }, ...result.messages],
+        messages: [
+          { role: "system", content: buildSystemPrompt(result.lang, await getProducers()) },
+          ...result.messages,
+        ],
       }),
       signal: upstreamAbort.signal,
       cache: "no-store",

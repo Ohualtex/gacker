@@ -1,9 +1,11 @@
 import type { Locale } from "@/lib/i18n";
-import { identifyCopy, identifyItems } from "@/data/identify";
+import { identifyCopy, identifyItems as staticItems, type IdentifyItem } from "@/data/identify";
+import { getIdentifyItems } from "@/lib/cms/queries";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function IdentifyCriteria({ lang }: { lang: Locale }) {
+export async function IdentifyCriteria({ lang, items }: { lang: Locale; items?: IdentifyItem[] }) {
   const copy = identifyCopy[lang];
+  const identifyItems = items ?? (await getIdentifyItems()) ?? staticItems;
 
   return (
     <section className="bg-bone">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { getDictionary } from "@/lib/dictionaries";
+import { getLiveDictionary, getStory } from "@/lib/cms/queries";
 import { hasLocale } from "@/lib/i18n";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { KilimBand } from "@/components/ui/KilimBand";
@@ -10,22 +10,21 @@ import { Reveal } from "@/components/ui/Reveal";
 import { StoryChapters } from "@/components/story/StoryChapters";
 import { CandyInfo } from "@/components/story/CandyInfo";
 import { IdentifyCriteria } from "@/components/story/IdentifyCriteria";
-import { story } from "@/content/story";
 import { candyInfo } from "@/content/candy-info";
 import { candyFacts } from "@/data/candy-info";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/hikaye">): Promise<Metadata> {
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
-  const dict = getDictionary(lang);
+  const dict = await getLiveDictionary(lang);
   return { title: dict.pages.story.title, description: dict.pages.story.lead };
 }
 
 export default async function Page({ params }: PageProps<"/[lang]/hikaye">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
-  const dict = getDictionary(lang);
-  const content = story[lang];
+  const dict = await getLiveDictionary(lang);
+  const content = await getStory(lang);
 
   return (
     <>

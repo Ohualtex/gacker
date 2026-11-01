@@ -355,10 +355,10 @@ export const quizCopy: L<QuizCopy> = {
 export const QUIZ_SLUG = "hangi-badem-sekeri";
 
 /** Puanları toplar; eşitlikte son sorunun şıkkına en yakın tip kazanır. */
-export function scoreQuiz(answers: number[]): QuizTypeId {
+export function scoreQuiz(answers: number[], questions = quizQuestions): QuizTypeId {
   const totals: Record<QuizTypeId, number> = { klasik: 0, pastel: 0, citir: 0, cayli: 0 };
   answers.forEach((choice, q) => {
-    const option = quizQuestions[q]?.options[choice];
+    const option = questions[q]?.options[choice];
     if (!option) return;
     for (const id of quizTypeIds) totals[id] += option.weights[id] ?? 0;
   });
@@ -367,7 +367,7 @@ export function scoreQuiz(answers: number[]): QuizTypeId {
   if (tied.length === 1) return tied[0];
   // Eşitlik: en son cevaplardan geriye doğru bakarak kırılır.
   for (let q = answers.length - 1; q >= 0; q--) {
-    const option = quizQuestions[q]?.options[answers[q]];
+    const option = questions[q]?.options[answers[q]];
     if (!option) continue;
     const top = Math.max(...tied.map((id) => option.weights[id] ?? 0));
     const narrowed = tied.filter((id) => (option.weights[id] ?? 0) === top);

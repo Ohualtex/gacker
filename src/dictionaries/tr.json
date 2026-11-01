@@ -57,7 +57,7 @@
     "send": "Gönder",
     "open": "Asistanı aç",
     "close": "Asistanı kapat",
-    "greeting": "Merhaba! Badem şekeri ve Elazığ hakkında sorularını yanıtlayabilirim.",
+    "greeting": "Hoş geldin gakkoş, buyur. Gel horata edek.",
     "error": "Şu an yanıt veremiyorum. Biraz sonra tekrar dener misin?"
   },
   "footer": {
@@ -84,6 +84,25 @@
     "contact": {
       "title": "İletişim",
       "lead": "Bize ulaşın."
+    },
+    "request": {
+      "title": "Üretici olarak listelenmek",
+      "lead": "Badem şekeri yapıyor veya satıyorsanız formu doldurun. Kayıt doğrulanınca listede yer alır.",
+      "name": "İşletme adı",
+      "email": "E-posta",
+      "intro": "Kısa tanıtım",
+      "address": "Açık adres",
+      "phone": "Telefon",
+      "website": "Web sitesi",
+      "socials": "Sosyal medya",
+      "hours": "Çalışma saatleri",
+      "notes": "Not, fotoğraf bağlantısı",
+      "submit": "Talebi gönder",
+      "success": "Talebiniz alındı. Doğrulandıktan sonra listede görünür.",
+      "messageTitle": "Bize yazın",
+      "message": "Mesajınız",
+      "messageSubmit": "Mesajı gönder",
+      "messageSuccess": "Mesajınız ulaştı."
     },
     "gallery": {
       "title": "Galeri",
