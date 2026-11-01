@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gacker
 
-## Getting Started
+A repository for the GakCoding event.
 
-First, run the development server:
+**Second place at GakCoding — November 1, 2026.**
 
-```bash
+Built by the Gacker team for the GakCoding event held in Elazığ on November 1, 2026. The event theme was **Elazığ almond candy**.
+
+## About
+
+A bilingual Turkish and English web experience exploring almond candy, local producers, and the cultural heritage of Elazığ.
+
+- Interactive storytelling, a local producer directory, and an Elazığ discovery map.
+- Gakkocan mascot and AI assistant, plus an almond-candy personality quiz.
+- Turkish and English content, a visual gallery, regional music, and theme support.
+- An admin panel for content and submissions.
+
+> **Project status:** An event prototype, archived as a record of the Gacker team's GakCoding entry. It is not actively maintained.
+
+Some visuals are AI-generated, and some producer images are illustrative. See the application's **AI & Attribution** page for details.
+
+## Running locally
+
+Requires Node.js and npm.
+
+```sh
+npm ci
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Turkish: [localhost:3000/tr](http://localhost:3000/tr) · English: [localhost:3000/en](http://localhost:3000/en)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`npm ci` also generates the Prisma client automatically. Use `.env.example` as a reference for configuration:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `DATABASE_URL`: PostgreSQL connection string. Required for the admin panel and database writes. Public content queries fall back to the repository's static data when the database is unavailable.
+- `ADMIN_USER`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`: admin login and session settings.
+- `LLM_API_KEY`: API key for the chat assistant. Without it, the assistant reports that it has not been configured.
+- `LLM_BASE_URL`, `LLM_MODEL`: optional OpenAI-compatible service endpoint and model selection.
 
-## Learn More
+Do not commit real API keys or passwords.
 
-To learn more about Next.js, take a look at the following resources:
+## Database and admin panel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project uses PostgreSQL through Prisma; the event version includes a Neon integration. After configuring `DATABASE_URL` for your own development database, prepare the schema and seed data:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run db:push
+npm run db:seed
+```
 
-## Deploy on Vercel
+These commands modify the database. For Prisma CLI and seed commands, provide environment variables through your shell or a root `.env` file that Prisma can load. Next.js loading `.env.local` does not apply to these commands.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Admin panel: [localhost:3000/admin](http://localhost:3000/admin)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Stack
+
+Next.js App Router, React, TypeScript, Tailwind CSS, Motion, Three.js / React Three Fiber, and Prisma.
+
+```sh
+npm run lint   # Check code
+npm run build  # Create a production build
+npm run start  # Run the production build
+```
+
+## Project structure
+
+- `src/app/`: pages, API routes, and the admin panel.
+- `src/components/`: UI, quiz, map, and mascot components.
+- `src/content/`, `src/data/`, `src/dictionaries/`: content, static data, and translations.
+- `prisma/`: database schema and seed data.
+- `public/`: images, audio, and map assets. See `public/audio/ATTRIBUTION.md` for audio credits.
+
+---
+
+GakCoding · Gacker team · November 1, 2026
