@@ -14,7 +14,7 @@ export const COUNTER = { x0: 38, x1: 292, y0: 234, y1: 244 } as const;
 export const GROUND = { y0: 326, y1: 338 } as const;
 
 /** Uzatılan elin (avucun) sahne koordinatındaki konumu — şekerler buradan dökülür. */
-export const HAND = { x: 112, y: 202 } as const;
+export const HAND = { x: 129, y: 217 } as const;
 
 /** Dosya yolları — kullanıcı bu dosyalardan birini bırakır, sistem otomatik algılar. */
 export const ASSETS = {

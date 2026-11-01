@@ -92,11 +92,13 @@
 }
 .gk-mascot__sprite {
   position: absolute;
-  inset: auto 0 -12% 0;
+  /* Full-body artwork is framed as a waist-up shopkeeper behind the counter. */
+  inset: -11% 0 auto 0;
   width: 100%;
-  height: 112%;
+  height: 200%;
   object-fit: contain;
-  object-position: 50% 100%;
+  object-position: 50% 0;
+  clip-path: inset(0 0 44.5% 0);
   -webkit-user-drag: none;
 }
 .gk-mascot__glb {
@@ -375,3 +377,6 @@
 @media print {
   .gk-mascot { display: none; }
 }
+
+/* The sprite already contains the offered almonds; avoid a second floating pile. */
+.gk-mascot[data-source="sprite"] .gk-mascot__handful-wrap { display: none; }
