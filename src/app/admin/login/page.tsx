@@ -14,9 +14,9 @@ export default async function AdminLoginPage() {
           Sofra
           <span>Yönetim kapısı</span>
         </p>
-        <h1 className="ad-title mt-8">Sadece sofrayı kuranlar.</h1>
+        <h1 className="ad-title mt-8">Yönetim girişi</h1>
         <p className="ad-lead mt-3 max-w-sm">
-          Kullanıcı adı ve parola ortam değişkenlerinden okunur. Oturum çerezle imzalanır.
+          Kullanıcı adı ve parolayı yaz. Oturum yalnızca bu tarayıcıda durur.
         </p>
         <div className="mt-8">
           <LoginForm />

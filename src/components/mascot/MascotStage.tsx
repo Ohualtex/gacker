@@ -25,6 +25,7 @@ import { ChevronDown, ChevronUp, MessageCircle } from "lucide-react";
 import { mascotContent } from "@/content/mascot";
 import type { Locale } from "@/lib/i18n";
 import { ASSISTANT_OPEN_EVENT } from "@/components/assistant/AssistantWidget";
+import { FILM_ARRIVED_EVENT } from "@/components/film/FilmPopup";
 import { MascotMachine, type MascotSnapshot } from "./mascot-machine";
 import { HAND, SLOT, STAGE } from "./mascot-config";
 import { useCharacterSource } from "./character-source";
@@ -177,6 +178,13 @@ export default function MascotStage({ lang }: { lang: Locale }) {
     left: `${((HAND.x - SLOT.x - 20) / SLOT.w) * 100}%`,
     top: `${((HAND.y - SLOT.y - 12) / SLOT.h) * 100}%`,
   };
+  const [arrived, setArrived] = useState(true);
+  useEffect(() => {
+    const onArrive = () => setArrived(true);
+    window.addEventListener(FILM_ARRIVED_EVENT, onArrive);
+    return () => window.removeEventListener(FILM_ARRIVED_EVENT, onArrive);
+  }, []);
+
   const touchable = snap.phase === "offer" || snap.phase === "idle";
 
   return (
@@ -187,6 +195,7 @@ export default function MascotStage({ lang }: { lang: Locale }) {
       data-source={source.kind}
       data-min={minimized}
       data-paused={paused}
+      data-arrived={arrived}
       data-lang={lang}
     >
       <div className="gk-mascot__body">

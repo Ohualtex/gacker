@@ -1,0 +1,118 @@
+.gk-film {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.gk-film__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  cursor: pointer;
+  background: color-mix(in srgb, #1c120d 72%, transparent);
+}
+
+.gk-film__card {
+  position: relative;
+  z-index: 1;
+  width: min(52rem, 100%);
+  overflow: hidden;
+  background: #fbf6ee;
+  color: #2a1a12;
+  border: 1px solid rgba(42, 26, 18, 0.16);
+  box-shadow: 0 32px 70px -28px rgba(28, 18, 13, 0.7);
+}
+
+.gk-film__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1rem 1rem 1.35rem;
+}
+
+.gk-film__head h2 {
+  font-family: var(--font-sans), ui-sans-serif, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #2a1a12;
+}
+
+.gk-film__head p {
+  margin-top: 0.2rem;
+  color: #5b4636;
+  font-size: 0.95rem;
+}
+
+.gk-film__close {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border: 1px solid rgba(42, 26, 18, 0.16);
+  border-radius: 3px;
+  background: #fbf6ee;
+  color: #2a1a12;
+  cursor: pointer;
+}
+
+.gk-film__close:hover {
+  color: #9b2b22;
+}
+
+.gk-film__stage {
+  position: relative;
+  background: #1c120d url("/media/gakkooo-poster.jpg") center / cover no-repeat;
+}
+
+.gk-film__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: transparent;
+  object-fit: contain;
+}
+
+.gk-film__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 0;
+  border-radius: 3px;
+  background: #9b2b22;
+  color: #fbf6ee;
+  padding: 0.9rem 1.25rem;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: 0 16px 30px -16px rgba(28, 18, 13, 0.8);
+}
+
+.gk-film__play:hover {
+  background: #6e1d17;
+}
+
+.gk-film-handoff {
+  position: fixed;
+  z-index: 96;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 14px rgba(42, 26, 18, 0.28));
+  transition:
+    left 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}

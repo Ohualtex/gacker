@@ -8,6 +8,7 @@ import { defaultLocale, hasLocale, type Locale } from "@/lib/i18n";
 import { QUIZ_SLUG, quizCopy } from "@/content/quiz";
 import { readStorage } from "@/components/legal/storage";
 import { ASSISTANT_OPEN_EVENT } from "@/components/assistant/AssistantWidget";
+import { FILM_CLOSE_EVENT } from "@/components/film/FilmPopup";
 import { KilimBand } from "@/components/ui/KilimBand";
 import "./quiz.css";
 
@@ -67,20 +68,32 @@ export function QuizInvite({ lang }: { lang?: Locale }) {
       setOpen(true);
     };
 
+    let timer = 0;
     const onScroll = () => {
       if (window.scrollY > 80) show();
     };
-    const timer = window.setTimeout(show, DELAY_MS);
-    window.addEventListener("scroll", onScroll, { passive: true });
     const hideForChat = () => {
       shown = true;
       setOpen(false);
     };
-    window.addEventListener(ASSISTANT_OPEN_EVENT, hideForChat);
+    const arm = () => {
+      timer = window.setTimeout(show, DELAY_MS);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener(ASSISTANT_OPEN_EVENT, hideForChat);
+    };
+    let filmSeen = true;
+    try {
+      filmSeen = sessionStorage.getItem("gk-film") === "1";
+    } catch {
+      filmSeen = true;
+    }
+    if (filmSeen) arm();
+    else window.addEventListener(FILM_CLOSE_EVENT, arm, { once: true });
     return () => {
       window.clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener(ASSISTANT_OPEN_EVENT, hideForChat);
+      window.removeEventListener(FILM_CLOSE_EVENT, arm);
     };
   }, [pathname]);
 

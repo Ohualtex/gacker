@@ -65,10 +65,15 @@
   font-size: 0.78rem;
 }
 
+.ad-login,
+.ad-main {
+  color: #2a1a12;
+  color-scheme: light;
+}
+
 .ad-main {
   min-width: 0;
   background: #fbf6ee;
-  color: #2a1a12;
 }
 
 .ad-bar {
@@ -85,14 +90,17 @@
 }
 
 .ad-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 0.95;
+  font-family: var(--font-sans), ui-sans-serif, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #2a1a12;
 }
 
 .ad-lead {
   margin-top: 0.4rem;
-  color: #5b4636;
+  color: #3f2e22;
 }
 
 .ad-table {
@@ -132,12 +140,14 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.ad-field label {
+.ad-field label,
+.ad-field > span {
   display: block;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #5b4636;
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #2a1a12;
   margin-bottom: 0.35rem;
 }
 

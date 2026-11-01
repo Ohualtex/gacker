@@ -27,35 +27,35 @@ export type QuizQuestion = {
 export const quizQuestions: QuizQuestion[] = [
   {
     prompt: {
-      tr: "Kapı çaldı, kapıda hiç beklemediğin misafirler. İlk refleksin?",
-      en: "The doorbell rings: guests you weren't expecting. Your first reflex?",
+      tr: "Kapı çaldı. Misafir içeri girmeden eline ne tutuşturursun?",
+      en: "The door opens. What do you put in a guest's hand before they even sit down?",
     },
     options: [
       {
         text: {
-          tr: "Çaydanlık çoktan ocakta. “Önce bir çay, sonra konuşuruz.”",
-          en: "The kettle is already on. “Tea first, talk later.”",
-        },
-        weights: { cayli: 2, klasik: 1 },
-      },
-      {
-        text: {
-          tr: "En güzel örtüyü çıkarır, her şeyi yerli yerine koyarım.",
-          en: "I bring out the nicest tablecloth and put everything in its place.",
+          tr: "İnce kabuklu beyaz badem şekeri. Tam ortaya, düzgünce.",
+          en: "A white almond candy with a thin shell. Dead centre, neatly.",
         },
         weights: { klasik: 2, cayli: 1 },
       },
       {
         text: {
-          tr: "Müziği açar, “Hoş geldiniz!” diye herkesi kucaklarım.",
-          en: "I turn the music up and greet everyone with a hug.",
+          tr: "Önce çay bardağı. Şeker onun yanına gelir.",
+          en: "The tea glass first. The candy comes beside it.",
+        },
+        weights: { cayli: 2, klasik: 1 },
+      },
+      {
+        text: {
+          tr: "Rengi rengine bir avuç. Herkese bir tane, kimse açıkta kalmasın.",
+          en: "A handful of every colour. One each, nobody left out.",
         },
         weights: { pastel: 2, citir: 1 },
       },
       {
         text: {
-          tr: "“Evde oturmayalım, hadi çıkalım!” diyerek planı değiştiririm.",
-          en: "“Let's not sit at home, let's go out!” and the plan changes.",
+          tr: "En çıtır olanı. “Durma, tadına bak” derim.",
+          en: "The crispest one. “Don't wait, taste it.”",
         },
         weights: { citir: 2, pastel: 1 },
       },
@@ -63,107 +63,35 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     prompt: {
-      tr: "Halay başladı. Sen halayın neresindesin?",
-      en: "The halay (line dance) begins. Where are you in the line?",
+      tr: "Tepside dört şeker duruyor. Elin hangisine gider?",
+      en: "Four candies on the tray. Which one does your hand reach for?",
     },
     options: [
       {
         text: {
-          tr: "En başta, mendil elimde. Ortamın tonunu ben belirlerim.",
-          en: "At the very front, handkerchief in hand. I set the mood.",
+          tr: "Bildiğin beyaza. İnce zar, ortadaki, hiç yamuk değil.",
+          en: "The familiar white one. A thin shell, in the middle, not a bit crooked.",
+        },
+        weights: { klasik: 2, cayli: 1 },
+      },
+      {
+        text: {
+          tr: "Çay bardağına en yakın durana. İkisi birlikte gider.",
+          en: "The one closest to the tea glass. The two belong together.",
+        },
+        weights: { cayli: 2, klasik: 1 },
+      },
+      {
+        text: {
+          tr: "En renkli olana. Sofranın neşesi o.",
+          en: "The most colourful one. That's the joy of the table.",
         },
         weights: { pastel: 2, citir: 1 },
       },
       {
         text: {
-          tr: "Ortada, adımı şaşırmadan. Halayın sağlam omurgasıyım.",
-          en: "In the middle, never missing a step. The steady backbone of the line.",
-        },
-        weights: { klasik: 2, cayli: 1 },
-      },
-      {
-        text: {
-          tr: "Sonda, ama en hızlı adımlar bende. Tempo yükselsin!",
-          en: "At the end, but with the fastest footwork. Faster, please!",
-        },
-        weights: { citir: 2, pastel: 1 },
-      },
-      {
-        text: {
-          tr: "Kenarda, çayım elimde. Alkışla eşlik ederim, sohbet de bedava.",
-          en: "On the side with my tea, clapping along. Conversation included.",
-        },
-        weights: { cayli: 2, klasik: 1 },
-      },
-    ],
-  },
-  {
-    prompt: {
-      tr: "Hafta sonu için en çok hangi plan içini ısıtır?",
-      en: "Which weekend plan warms your heart the most?",
-    },
-    options: [
-      {
-        text: {
-          tr: "Uzun bir kahvaltı, bitmeyen çay ve “ne anlatıyordum ben?”",
-          en: "A long breakfast, endless tea and “what was I saying?”",
-        },
-        weights: { cayli: 2, pastel: 1 },
-      },
-      {
-        text: {
-          tr: "Sakin bir ev günü: bildik kitap, bildik koltuk, bildik huzur.",
-          en: "A quiet day at home: familiar book, familiar armchair, familiar calm.",
-        },
-        weights: { klasik: 2, cayli: 1 },
-      },
-      {
-        text: {
-          tr: "Kalabalık bir davet, bol fotoğraf, bol kahkaha.",
-          en: "A lively get-together with plenty of photos and laughter.",
-        },
-        weights: { pastel: 2, klasik: 1 },
-      },
-      {
-        text: {
-          tr: "Haritada hiç görmediğim bir yol. Nereye çıkarsa!",
-          en: "A road I've never seen on the map. Wherever it leads!",
-        },
-        weights: { citir: 2, cayli: 1 },
-      },
-    ],
-  },
-  {
-    prompt: {
-      tr: "Arkadaşının canı sıkkın. Ne yaparsın?",
-      en: "A friend is feeling down. What do you do?",
-    },
-    options: [
-      {
-        text: {
-          tr: "Yanına oturur, saatlerce dinlerim. Çay da tazelenir tabii.",
-          en: "I sit beside them and listen for hours. Fresh tea, of course.",
-        },
-        weights: { cayli: 2, klasik: 1 },
-      },
-      {
-        text: {
-          tr: "Sakin ve güvenilir bir omuz olurum. Ne gerekiyorsa çözülür.",
-          en: "I'm a calm, reliable shoulder. Whatever needs sorting gets sorted.",
-        },
-        weights: { klasik: 2, citir: 1 },
-      },
-      {
-        text: {
-          tr: "Güldürürüm. Bir espri, bir şarkı, hava hemen dağılır.",
-          en: "I make them laugh. A joke, a song, and the clouds clear.",
-        },
-        weights: { pastel: 2, cayli: 1 },
-      },
-      {
-        text: {
-          tr: "Elinden tutarım: “Kalk, bir yere gidiyoruz!”",
-          en: "I take their hand: “Get up, we're going somewhere!”",
+          tr: "Yeni çekilmiş, hâlâ çıtırdayana.",
+          en: "The one pulled just now, still crackling.",
         },
         weights: { citir: 2, pastel: 1 },
       },
@@ -171,37 +99,109 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     prompt: {
-      tr: "Hangi cümle seni daha çok anlatıyor?",
-      en: "Which sentence sounds most like you?",
+      tr: "Bir kutu hediye edeceksin. Kutuyu nasıl hazırlarsın?",
+      en: "You're giving a box as a gift. How do you prepare it?",
     },
     options: [
       {
         text: {
-          tr: "“Sade olan kalıcıdır.”",
-          en: "“Simple things last.”",
+          tr: "Beyazlar alta, dizilim düzgün, kapak tam oturur.",
+          en: "Whites on the bottom, a straight row, the lid sits flush.",
         },
-        weights: { klasik: 2, citir: 1 },
+        weights: { klasik: 2, cayli: 1 },
       },
       {
         text: {
-          tr: "“Güzel günler paylaşınca güzeldir.”",
-          en: "“Good days are better shared.”",
+          tr: "İçine kısa bir not: “Çayın yanında aç.”",
+          en: "A short note inside: “Open it beside the tea.”",
         },
-        weights: { pastel: 2, cayli: 1 },
+        weights: { cayli: 2, klasik: 1 },
       },
       {
         text: {
-          tr: "“Hayat kısa, denemediğin lezzet kalmasın.”",
-          en: "“Life is short, leave no flavor untried.”",
+          tr: "Her renkten koyarım. Açanın yüzü gülsün.",
+          en: "A bit of every colour, so the person who opens it smiles.",
         },
-        weights: { citir: 2, klasik: 1 },
+        weights: { pastel: 2, citir: 1 },
       },
       {
         text: {
-          tr: "“Bir çay daha içersek anlatırım…”",
-          en: "“One more tea and I'll tell you the story…”",
+          tr: "En taze paketi seçerim. “Yolda aç, bekletme.”",
+          en: "I pick the freshest pack. “Open it on the way, don't wait.”",
         },
-        weights: { cayli: 2, pastel: 1 },
+        weights: { citir: 2, pastel: 1 },
+      },
+    ],
+  },
+  {
+    prompt: {
+      tr: "Sofrada kutu açıldı. Şekeri nasıl paylaşırsın?",
+      en: "The box is open on the table. How do you share the candy?",
+    },
+    options: [
+      {
+        text: {
+          tr: "Üçer üçer, herkese eşit. Kimse eksik kalmaz.",
+          en: "Three each, the same for everyone. Nobody comes up short.",
+        },
+        weights: { klasik: 2, cayli: 1 },
+      },
+      {
+        text: {
+          tr: "Önce bir yudum çay, sonra bir şeker, sonra kaldığımız yer.",
+          en: "A sip of tea, then a candy, then we pick up the story.",
+        },
+        weights: { cayli: 2, klasik: 1 },
+      },
+      {
+        text: {
+          tr: "Avuç avuç. “Alın, alın” diye kutuyu elden ele geçiririm.",
+          en: "By the handful. “Take some, take some,” and the box goes round.",
+        },
+        weights: { pastel: 2, citir: 1 },
+      },
+      {
+        text: {
+          tr: "Ortaya iterim. Kim önce uzanırsa o kazanır.",
+          en: "I push it to the middle. Whoever reaches first wins.",
+        },
+        weights: { citir: 2, pastel: 1 },
+      },
+    ],
+  },
+  {
+    prompt: {
+      tr: "Elazığ’dan dönerken çantanda tek göz kaldı. Neyi koyarsın?",
+      en: "One pocket left in the bag on the way home from Elazığ. What goes in it?",
+    },
+    options: [
+      {
+        text: {
+          tr: "Klasik beyazı. Eve girince tepsinin ortasına o konur.",
+          en: "The classic white. At home it goes in the middle of the tray.",
+        },
+        weights: { klasik: 2, cayli: 1 },
+      },
+      {
+        text: {
+          tr: "Çayın yanına yetecek kadar. Akşam sohbeti onsuz olmaz.",
+          en: "Just enough for beside the tea. The evening talk needs it.",
+        },
+        weights: { cayli: 2, klasik: 1 },
+      },
+      {
+        text: {
+          tr: "Her renkten bir tutam. Kapıya gelenle paylaşmak için.",
+          en: "A pinch of every colour, to share with whoever comes to the door.",
+        },
+        weights: { pastel: 2, citir: 1 },
+      },
+      {
+        text: {
+          tr: "En taze, en çıtır paketi. Yolda biterse de olsun.",
+          en: "The freshest, crispest pack. If it's gone before you arrive, so be it.",
+        },
+        weights: { citir: 2, pastel: 1 },
       },
     ],
   },

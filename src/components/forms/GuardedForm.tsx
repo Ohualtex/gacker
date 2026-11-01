@@ -24,7 +24,7 @@ export function GuardedForm({
     return <p className="rounded-[3px] bg-cream p-5 text-ink shadow-warm">{success}</p>;
   }
   return (
-    <form action={formAction} className="grid gap-4">
+    <form action={formAction} className="relative grid gap-4">
       <input type="hidden" name="lang" value={lang} />
       <input type="hidden" name="issued" value={ticket.issued} />
       <input type="hidden" name="nonce" value={ticket.nonce} />

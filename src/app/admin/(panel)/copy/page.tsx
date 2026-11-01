@@ -1,81 +1,55 @@
-import { saveCopy } from "@/app/actions/admin";
+import { saveSiteCopy } from "@/app/actions/admin";
+import { siteCopyGroups } from "@/lib/cms/site-copy";
 import { prisma } from "@/lib/db";
 
-export const metadata = { title: "Metinler" };
+export const metadata = { title: "Giriş yazıları" };
 
 export default async function CopyPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; group?: string }>;
+  searchParams: Promise<{ saved?: string }>;
 }) {
-  const { q = "", group = "" } = await searchParams;
+  const { saved } = await searchParams;
   const rows = await prisma.copyEntry.findMany({
-    where: {
-      AND: [
-        group ? { group } : {},
-        q
-          ? {
-              OR: [
-                { key: { contains: q, mode: "insensitive" } },
-                { tr: { contains: q, mode: "insensitive" } },
-                { en: { contains: q, mode: "insensitive" } },
-              ],
-            }
-          : {},
-      ],
-    },
-    orderBy: { key: "asc" },
+    where: { key: { in: siteCopyGroups.flatMap((group) => group.fields.map((field) => field.key)) } },
   });
-  const groups = await prisma.copyEntry.findMany({
-    distinct: ["group"],
-    select: { group: true },
-    orderBy: { group: "asc" },
-  });
+  const byKey = new Map(rows.map((row) => [row.key, row]));
 
   return (
     <>
       <header className="ad-bar">
         <div>
-          <h1 className="ad-title">Metinler</h1>
-          <p className="ad-lead">Hero başlığı dahil sitedeki her cümle. TR ve EN birlikte.</p>
+          <h1 className="ad-title">Giriş yazıları</h1>
+          <p className="ad-lead">Ana başlık, sayfa cümleleri ve alt bilgi. Menü ve düğme yazıları burada yok.</p>
         </div>
       </header>
-      <section className="ad-page">
-        <form className="mb-8 flex flex-wrap gap-3">
-          <input name="q" defaultValue={q} placeholder="Ara" className="min-w-56 rounded-[3px] border border-line bg-bone px-3 py-2" />
-          <select name="group" defaultValue={group} className="rounded-[3px] border border-line bg-bone px-3 py-2">
-            <option value="">Tüm gruplar</option>
-            {groups.map((g) => (
-              <option key={g.group} value={g.group}>
-                {g.group}
-              </option>
-            ))}
-          </select>
-          <button className="ad-btn" type="submit">
-            Filtrele
+      <section className="ad-page max-w-4xl">
+        {saved ? <p className="ad-card mb-6">Kaydedildi. Sitede görünmesi için sayfayı yenilemen yeterli.</p> : null}
+        <form action={saveSiteCopy} className="grid gap-8">
+          {siteCopyGroups.map((group) => (
+            <fieldset key={group.title} className="ad-card grid gap-5">
+              <legend className="font-sans text-lg font-semibold">{group.title}</legend>
+              {group.fields.map((field) => {
+                const row = byKey.get(field.key);
+                return (
+                  <div key={field.key} className="ad-grid two">
+                    <label className="ad-field">
+                      <span>{field.label} · Türkçe</span>
+                      <textarea name={`${field.key}__tr`} rows={field.rows ?? 2} defaultValue={row?.tr ?? ""} required />
+                    </label>
+                    <label className="ad-field">
+                      <span>{field.label} · English</span>
+                      <textarea name={`${field.key}__en`} rows={field.rows ?? 2} defaultValue={row?.en ?? ""} required />
+                    </label>
+                  </div>
+                );
+              })}
+            </fieldset>
+          ))}
+          <button type="submit" className="ad-btn w-fit">
+            Yazıları kaydet
           </button>
         </form>
-        <div className="grid gap-4">
-          {rows.map((row) => (
-            <form key={row.key} action={saveCopy} className="ad-card ad-grid">
-              <input type="hidden" name="key" value={row.key} />
-              <p className="text-[0.78rem] uppercase tracking-[0.12em] text-ink-2">{row.key}</p>
-              <div className="ad-grid two">
-                <label className="ad-field">
-                  <span>Türkçe</span>
-                  <textarea name="tr" defaultValue={row.tr} rows={row.tr.length > 80 ? 5 : 2} />
-                </label>
-                <label className="ad-field">
-                  <span>English</span>
-                  <textarea name="en" defaultValue={row.en} rows={row.en.length > 80 ? 5 : 2} />
-                </label>
-              </div>
-              <button type="submit" className="ad-btn w-fit">
-                Bu metni kaydet
-              </button>
-            </form>
-          ))}
-        </div>
       </section>
     </>
   );

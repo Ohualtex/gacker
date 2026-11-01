@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { AssistantWidget } from "@/components/assistant/AssistantWidget";
 import { MascotMount } from "@/components/mascot/MascotMount";
 import { CookieNotice } from "@/components/legal/CookieNotice";
+import { FilmHandoff, FilmPopup } from "@/components/film/FilmPopup";
 import { QuizInvite } from "@/components/quiz/QuizInvite";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -49,6 +50,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <AssistantWidget lang={lang} hideLauncher />
       <MascotMount lang={lang} />
       <CookieNotice lang={lang} />
+      <FilmPopup lang={lang} />
+      <FilmHandoff />
       <QuizInvite lang={lang} />
     </>
   );

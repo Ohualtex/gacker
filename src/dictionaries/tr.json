@@ -16,7 +16,8 @@
     "menu": "Menü",
     "close": "Kapat",
     "skip": "İçeriğe geç",
-    "gallery": "Galeri"
+    "gallery": "Galeri",
+    "quiz": "Hangi badem şekerisin?"
   },
   "controls": {
     "language": "Dil",
@@ -89,6 +90,7 @@
       "title": "Üretici olarak listelenmek",
       "lead": "Badem şekeri yapıyor veya satıyorsanız formu doldurun. Kayıt doğrulanınca listede yer alır.",
       "name": "İşletme adı",
+      "senderName": "Adınız",
       "email": "E-posta",
       "intro": "Kısa tanıtım",
       "address": "Açık adres",

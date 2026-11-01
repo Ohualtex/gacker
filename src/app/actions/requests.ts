@@ -3,13 +3,14 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { clientIp } from "@/lib/admin/auth";
-import { allowSubmission, hashVisitor, issueFormTicket, looksSpam, verifyFormTicket } from "@/lib/bot-guard";
+import { allowSubmission, hashVisitor, looksSpam, verifyFormTicket } from "@/lib/bot-guard";
 
 export type RequestState = { ok?: boolean; error?: string };
 
 const copy = {
   tr: {
     missing: "Ad, e-posta, tanıtım ve adres gerekli.",
+    missingMessage: "Ad, e-posta ve mesaj gerekli.",
     bot: "Gönderim doğrulanamadı. Sayfayı yenileyip tekrar deneyin.",
     rate: "Çok hızlı gönderim. Biraz sonra tekrar deneyin.",
     spam: "Metin çok uzun veya çok fazla bağlantı içeriyor.",
@@ -17,6 +18,7 @@ const copy = {
   },
   en: {
     missing: "Name, email, introduction and address are required.",
+    missingMessage: "Name, email and a message are required.",
     bot: "The submission could not be verified. Refresh and try again.",
     rate: "Too many submissions. Please wait a little.",
     spam: "The text is too long or has too many links.",
@@ -91,7 +93,7 @@ export async function submitContactMessage(_prev: RequestState, formData: FormDa
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
-  if (!name || !email || !message || !email.includes("@")) return { error: t.missing };
+  if (!name || !email || !message || !email.includes("@")) return { error: t.missingMessage };
 
   const gate = await guard(formData);
   if (!gate.ok) return { error: gate.reason === "rate" ? t.rate : t.bot };
@@ -102,8 +104,4 @@ export async function submitContactMessage(_prev: RequestState, formData: FormDa
   });
   revalidatePath("/admin/messages");
   return { ok: true };
-}
-
-export function newFormTicket() {
-  return issueFormTicket();
 }

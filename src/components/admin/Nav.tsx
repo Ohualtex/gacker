@@ -6,7 +6,7 @@ import { logoutAction } from "@/app/actions/auth";
 
 const LINKS = [
   ["Özet", "/admin"],
-  ["Metinler", "/admin/copy"],
+  ["Giriş yazıları", "/admin/copy"],
   ["Üreticiler", "/admin/producers"],
   ["Talepler", "/admin/requests"],
   ["Mesajlar", "/admin/messages"],

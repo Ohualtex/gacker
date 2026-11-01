@@ -16,7 +16,8 @@
     "menu": "Menu",
     "close": "Close",
     "skip": "Skip to content",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "quiz": "Which almond candy are you?"
   },
   "controls": {
     "language": "Language",
@@ -89,6 +90,7 @@
       "title": "Get listed as a producer",
       "lead": "If you make or sell almond candy, fill in the form. You appear on the list after we verify the record.",
       "name": "Business name",
+      "senderName": "Your name",
       "email": "Email",
       "intro": "Short introduction",
       "address": "Full address",

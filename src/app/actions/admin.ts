@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { requireAdmin } from "@/lib/admin/session";
+import { siteCopyKeys } from "@/lib/cms/site-copy";
 
 async function guard() {
   const session = await requireAdmin();
@@ -108,15 +109,21 @@ export async function deleteProducer(formData: FormData) {
   refreshPublic();
 }
 
-export async function saveCopy(formData: FormData) {
+export async function saveSiteCopy(formData: FormData) {
   await guard();
-  const key = text(formData, "key");
-  await prisma.copyEntry.update({
-    where: { key },
-    data: { tr: String(formData.get("tr") ?? ""), en: String(formData.get("en") ?? "") },
-  });
-  await log("update", "copy", key);
+  for (const key of siteCopyKeys) {
+    const tr = String(formData.get(`${key}__tr`) ?? "").trim();
+    const en = String(formData.get(`${key}__en`) ?? "").trim();
+    if (!tr || !en) continue;
+    await prisma.copyEntry.upsert({
+      where: { key },
+      update: { tr, en },
+      create: { key, group: key.split(".")[0] ?? "site", tr, en },
+    });
+  }
+  await log("update", "copy", "site");
   refreshPublic();
+  redirect("/admin/copy?saved=1");
 }
 
 export async function saveGallery(formData: FormData) {

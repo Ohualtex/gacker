@@ -16,7 +16,7 @@ export function ContactMessageForm({ lang, dict }: { lang: "tr" | "en"; dict: Di
     >
       <label className="block">
         <span className="mb-1.5 block text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-almond">
-          {t.name}
+          {t.senderName}
         </span>
         <input name="name" required className="w-full rounded-[3px] border border-line bg-bone px-3 py-2.5" />
       </label>

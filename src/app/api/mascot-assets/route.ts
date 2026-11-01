@@ -6,7 +6,7 @@ import { join } from "node:path";
  * gürültüsü olmadan). Öncelik: GLB → sprite. Üretimde derleme anında hesaplanır
  * (dosyayı ekledikten sonra yeniden derle); geliştirmede her istekte yeniden bakılır.
  */
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const PUBLIC_DIR = join(process.cwd(), "public");
 const GLB = "/models/gakkocan.glb";

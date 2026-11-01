@@ -4,11 +4,10 @@ import { prisma } from "@/lib/db";
 export const metadata = { title: "Özet" };
 
 export default async function AdminHomePage() {
-  const [producers, requests, messages, copy, gallery] = await Promise.all([
+  const [producers, requests, messages, gallery] = await Promise.all([
     prisma.producer.count(),
     prisma.producerRequest.count({ where: { status: "new" } }),
     prisma.contactMessage.count({ where: { read: false } }),
-    prisma.copyEntry.count(),
     prisma.galleryItem.count(),
   ]);
 
@@ -16,7 +15,6 @@ export default async function AdminHomePage() {
     ["Üreticiler", producers, "/admin/producers", "Yeni marka ekle, hikâyeyi düzelt."],
     ["Yeni talepler", requests, "/admin/requests", "Siteden gelen üretici başvuruları."],
     ["Okunmamış mesaj", messages, "/admin/messages", "İletişim formundan gelenler."],
-    ["Metinler", copy, "/admin/copy", "Hero, menü, footer — her cümle."],
     ["Galeri", gallery, "/admin/gallery", "Kareler, altyazılar, sır."],
   ] as const;
 
