@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft, X } from "lucide-react";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { hasLocale } from "@/lib/i18n";
@@ -32,11 +34,18 @@ export default async function Page({ params }: PageProps<"/[lang]/hangi-badem-se
       </header>
 
       <section className="gk-quiz-stage" aria-label={t.title}>
-        <div>
+        <div className="gk-quiz-shell">
+          <Link className="gk-quiz-close" href={`/${lang}`} aria-label={t.home} title={t.home}>
+            <X size={18} aria-hidden="true" />
+          </Link>
           <Suspense fallback={<div className="gk-quiz-card gk-quiz-skeleton" aria-hidden="true" />}>
             <QuizApp lang={lang} questions={questions} />
           </Suspense>
         </div>
+        <Link className="gk-quiz-home" href={`/${lang}`}>
+          <ArrowLeft size={17} aria-hidden="true" />
+          {t.home}
+        </Link>
         <p className="gk-quiz-note">{t.disclaimer}</p>
       </section>
     </>

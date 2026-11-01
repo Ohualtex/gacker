@@ -462,3 +462,35 @@
     justify-content: flex-end;
   }
 }
+
+.gk-quiz-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: 1rem;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.gk-quiz-home:hover { color: var(--kilim); }
+
+/* Keep the exit reachable in both the question and result views. */
+.gk-quiz-shell { position: relative; }
+.gk-quiz-shell .gk-quiz-card { padding-top: 4.5rem; }
+.gk-quiz-close {
+  position: absolute;
+  z-index: 2;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ink-2);
+  border-radius: 4px;
+}
+.gk-quiz-close:hover { color: var(--kilim); background: var(--bone); }
+.gk-quiz-close:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; }

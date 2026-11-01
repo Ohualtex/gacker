@@ -289,6 +289,7 @@ export type QuizCopy = {
   lead: string;
   disclaimer: string;
   back: string;
+  home: string;
   optionsLabel: string;
   progressLabel: string; // "{n}" "{total}"
   retry: string;
@@ -311,6 +312,7 @@ export const quizCopy: L<QuizCopy> = {
     disclaimer:
       "Eğlence amaçlıdır; gerçek çeşit veya üretici bilgisi değildir. Cevapların tarayıcından çıkmaz, hiçbir yere gönderilmez ve kaydedilmez.",
     back: "Geri",
+    home: "Ana sayfaya dön",
     optionsLabel: "Cevap seçenekleri",
     progressLabel: "Soru {n} / {total}",
     retry: "Tekrar çöz",
@@ -335,6 +337,7 @@ export const quizCopy: L<QuizCopy> = {
     disclaimer:
       "For fun only; not real variety or producer information. Your answers never leave your browser: they aren't sent or stored anywhere.",
     back: "Back",
+    home: "Back to home",
     optionsLabel: "Answer options",
     progressLabel: "Question {n} / {total}",
     retry: "Take it again",
